@@ -1,0 +1,117 @@
+services:
+  yadirect-database:
+    hostname: yadirect-database
+    image: postgres:15.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=d4a8f0435b2b866f855323d7d021a79164d2e13b
+    volumes:
+      - elof_yadirect_database:/var/lib/postgresql/yadirect/data2
+    ports:
+      - "5432:5432"
+    networks:
+      nw:
+        aliases:
+          - yadirect-database
+
+  shelby-bot:
+    build: ./
+    command: /app/entrypoint.sh
+    environment:
+      - DATABASE_PASSWORD=d4a8f0435b2b866f855323d7d021a79164d2e13b
+      - DATABASE_USER=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=shelby_service
+      - DATABASE_HOST=shelby-database
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - API_KEY=660fce91c3bb7421f90ef849
+      - USER_TOKEN=5adcf244cf6c752d9b63bff0
+      - API_URL=https://backpack.tf/api
+      - APP_ID=440
+      - MY_STEAM_ID=76561198302515355
+      - STEP_REF=3
+      - STEP_KEY=5
+      - DEBUG=True
+      - SERVER=True
+    ports:
+      - "87:8000"
+    depends_on:
+      - yadirect-database
+    networks:
+      nw:
+        aliases:
+          - shelby-bot
+
+  celery:
+    build: ./
+    command: celery -A yandexDirectBot worker --loglevel=info
+    environment:
+      - DATABASE_PASSWORD=d4a8f0435b2b866f855323d7d021a79164d2e13b
+      - DATABASE_USER=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=shelby_service
+      - DATABASE_HOST=shelby-database
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - API_KEY=660fce91c3bb7421f90ef849
+      - USER_TOKEN=5adcf244cf6c752d9b63bff0
+      - API_URL=https://backpack.tf/api
+      - APP_ID=440
+      - MY_STEAM_ID=76561198302515355
+      - STEP_REF=3
+      - STEP_KEY=5
+      - DEBUG=True
+      - SERVER=True
+    depends_on:
+      - redis
+    networks:
+      nw:
+        aliases:
+          - celery
+
+  celery-beat:
+    build: ./
+    command: celery -A yandexDirectBot beat --loglevel=info
+    environment:
+      - DATABASE_PASSWORD=d4a8f0435b2b866f855323d7d021a79164d2e13b
+      - DATABASE_USER=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=shelby_service
+      - DATABASE_HOST=shelby-database
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - API_KEY=660fce91c3bb7421f90ef849
+      - USER_TOKEN=5adcf244cf6c752d9b63bff0
+      - API_URL=https://backpack.tf/api
+      - APP_ID=440
+      - MY_STEAM_ID=76561198302515355
+      - STEP_REF=3
+      - STEP_KEY=5
+      - DEBUG=True
+      - SERVER=True
+    depends_on:
+      - celery
+    networks:
+      nw:
+        aliases:
+          - celery-beat
+
+  redis:
+    image: redis:7.2.4-alpine
+    depends_on:
+      - shelby-bot
+    networks:
+      nw:
+        aliases:
+          - redis
+
+networks:
+  nw:
+  share:
+    driver:
+      bridge
+
+volumes:
+  elof_shelby_database:
