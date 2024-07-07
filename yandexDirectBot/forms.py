@@ -1,6 +1,7 @@
 from django import forms
 
 from .models import Chat, Alert, YandexDirectAccount, Project
+from .widgets import TimePickerInput
 
 
 class ChatForm(forms.ModelForm):
@@ -20,6 +21,10 @@ class AlertForm(forms.ModelForm):
             'alert_time'
         )
 
+        widgets = {
+            'alert_time': TimePickerInput(),
+        }
+
 
 class YandexDirectAccountForm(forms.ModelForm):
     class Meta:
@@ -32,10 +37,10 @@ class YandexDirectAccountForm(forms.ModelForm):
 
 class ProjectForm(forms.ModelForm):
     class Meta:
-        model = YandexDirectAccount
+        model = Project
         fields = (
-            'alerts',
-            'yandex_direct_accounts',
             'name',
-            'week_budget'
+            'week_budget',
+            'yandex_direct_accounts',
+            'alerts'
         )

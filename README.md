@@ -1,11 +1,3 @@
-# ScavengerHunt bot
-
-## Описание
-Бот написан с использованием pytelegrambotapi,
-админпанель реализована на django. Бот позволяет
-проводить массовые мероприятия и обеспечивает стабильную
-работу под нагрузкой
-
 ## Локальный запуск
 `poetry run python3 manage.py migrate`
 `poetry run python3 manage.py makemigrations`
