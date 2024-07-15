@@ -39,7 +39,7 @@ class YandexDirectAPI:
         return AccountBalance.build(req.json()['data']['Accounts'][0])
 
     def get_account_report(self, token: str, date_from: str) -> AccountStatistics:
-        body = {
+        body_raw = {
             "method": "get",
             "params": {
                 "SelectionCriteria": {
@@ -61,11 +61,22 @@ class YandexDirectAPI:
             "processingMode": "auto"
         }
 
-        body = json.dumps(body, indent=4)
+        body = json.dumps(body_raw, indent=4)
         req = requests.post(
             self.api_url + '/json/v5/reports',
             body,
             headers=headers
         )
+        account_statistics = AccountStatistics.build(req.content.decode('utf-8'))
 
-        return AccountStatistics.build(req.content.decode('utf-8'))
+        body_raw['params']['IncludeVAT'] = 'YES'
+        body_raw['params']['FieldNames'] = ["Cost"]
+        body = json.dumps(body_raw, indent=4)
+        req = requests.post(
+            self.api_url + '/json/v5/reports',
+            body,
+            headers=headers
+        )
+        account_statistics.set_cost_with_vat(req.content.decode('utf-8'))
+
+        return account_statistics
