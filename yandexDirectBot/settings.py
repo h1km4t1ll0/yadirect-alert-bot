@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+import sentry_sdk
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'yandexDirectBot',
-    'bootstrap_datepicker_plus'
 ]
 
 MIDDLEWARE = [
@@ -93,8 +93,8 @@ if os.environ.get("SERVER", '') in ["True", True]:
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': os.environ.get("DATABASE_NAME", ''),
-            'USER': os.environ.get('DATABASE_USER', ''),
-            'PASSWORD': os.environ.get('DATABASE_PASSWORD', ''),
+            'USER': os.environ.get('POSTGRES_USER', ''),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD', ''),
             'HOST': os.environ.get('DATABASE_HOST', ''),
             'PORT': os.environ.get("DATABASE_PORT", ''),
         }
@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = []
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -129,13 +129,30 @@ STATIC_ROOT = '/app/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ### YandexDirect VARS ###
-CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL", '')
-CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND", '')
+YANDEX_DIRECT_BASE_URL = os.environ.get("YANDEX_DIRECT_BASE_URL", 'https://api.direct.yandex.ru')
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL", 'redis://localhost:6379')
+CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND", 'redis://localhost:6379')
+BOT_TOKEN = os.environ.get('BOT_TOKEN', '')
 
 CELERY_BEAT_SCHEDULE = {
-    'execute_every_ten_sec': {
-        # 'task': 'yandexDirectBot.src.order.work_orders',
-        'task': 'yandexDirectBot.tasks.work_orders',
-        'schedule': 60.0,  # Run every 60 seconds (once a minute)
+    'every_day_alert': {
+        'task': 'yandexDirectBot.tasks.every_day_alert',
+        'schedule': 60,  # Run every 60 seconds (once a minute)
+    },
+    'balance_change_alert': {
+        'task': 'yandexDirectBot.tasks.balance_change_alert',
+        'schedule': 3600,  # Run every 3600 seconds (once an hour)
     },
 }
+
+# Sentry setup
+sentry_sdk.init(
+    dsn=os.environ.get("SENTRY_DSN", None),
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+)

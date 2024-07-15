@@ -32,6 +32,8 @@ class YandexDirectAccountForm(forms.ModelForm):
         fields = (
             'name',
             'api_key',
+            'min_sum',
+            'notified'
         )
 
 
@@ -40,7 +42,6 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = (
             'name',
-            'week_budget',
             'yandex_direct_accounts',
             'alerts'
         )

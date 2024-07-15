@@ -2,7 +2,6 @@
 import os
 
 from celery import Celery
-
 from yandexDirectBot import settings
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'yandexDirectBot.settings')

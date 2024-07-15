@@ -1,6 +1,4 @@
 from django.contrib import admin
-from django.forms import TimeInput
-from django.utils.safestring import mark_safe
 
 from .forms import ChatForm, AlertForm, YandexDirectAccountForm, ProjectForm
 from .models import Chat, Alert, YandexDirectAccount, Project
@@ -16,16 +14,14 @@ class ChatAdmin(admin.ModelAdmin):
     form = ChatForm
 
 
-
-
 @admin.register(Alert)
 class AlertAdmin(admin.ModelAdmin):
     list_display = [
-        'chat',
+        'chats',
         'alert_time'
     ]
 
-    def chat(self, alert: Alert):
+    def chats(self, alert: Alert):
         return ', '.join(chat.name for chat in alert.chat.all())
 
     form = AlertForm
@@ -36,7 +32,9 @@ class YandexDirectAccountAdmin(admin.ModelAdmin):
     list_display = [
         'name',
         'api_key',
-    ]фввЖ
+        'min_sum',
+        'notified'
+    ]
 
     form = YandexDirectAccountForm
 
@@ -44,16 +42,20 @@ class YandexDirectAccountAdmin(admin.ModelAdmin):
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = [
-        'alerts',
-        'yandex_direct_accounts',
+        'alerts_',
+        'yandex_direct_accounts_',
         'name',
-        'week_budget'
     ]
 
-    def alerts(self, project: Project):
-        return ', '.join(alert.name for alert in project.alerts.all())
+    def alerts_(self, project: Project):
+        alerts = []
+        for alert in project.alerts.all():
+            for chat in alert.chat.all():
+                alerts.append(f'{alert.alert_time} {chat.name}')
 
-    def yandex_direct_accounts(self, project: Project):
+        return ', '.join(alerts)
+
+    def yandex_direct_accounts_(self, project: Project):
         return ', '.join(yandex_direct_account.name for yandex_direct_account in project.yandex_direct_accounts.all())
 
     form = ProjectForm

@@ -62,11 +62,34 @@ class YandexDirectAccount(models.Model):
         blank=False
     )
 
+    balance = models.FloatField(
+        verbose_name='Баланс аккаунта',
+        null=True,
+        blank=True
+    )
+
+    notified = models.BooleanField(
+        verbose_name='Оповещен о том, что баланс ниже нормы',
+        null=True,
+        blank=True,
+        default=False
+    )
+
+    min_sum = models.IntegerField(
+        verbose_name='Порог для уведомления',
+        null=False,
+        blank=False,
+        default=0
+    )
+
     objects = models.Manager()
 
     class Meta:
         verbose_name = 'Аккаунт Яндекс.Директ'
         verbose_name_plural = 'Аккаунты Яндекс.Директ'
+
+    def __str__(self):
+        return self.name
 
 
 class Project(models.Model):
@@ -87,12 +110,6 @@ class Project(models.Model):
     name = models.CharField(
         max_length=100,
         verbose_name='Название проекта',
-        null=False,
-        blank=False
-    )
-
-    week_budget = models.IntegerField(
-        verbose_name='Недельный бюджет',
         null=False,
         blank=False
     )
