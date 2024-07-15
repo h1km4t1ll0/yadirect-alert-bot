@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "CREATE DATABASE ${DATABASE_NAME};" > initial.sql
-psql postgresql://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_NAME} -f initial.sql
+psql "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}" -f initial.sql
 python3 manage.py collectstatic --noinput
 python3 manage.py makemigrations
 python3 manage.py migrate
