@@ -15,7 +15,7 @@ def every_day_alert():
     projects = Project.objects.all()
     current_time = datetime.datetime.now().strftime('%H:%M:00')
     current_date = datetime.datetime.now().strftime('%Y-%m-%d')
-    logger.info(current_time)
+    logger.info("Started every_day_alert job")
     yandex_direct_api = YandexDirectAPI()
 
     for project in projects:
@@ -23,7 +23,6 @@ def every_day_alert():
             logger.info(alert.alert_time)
             logger.info(f'{alert.alert_time == current_time} {alert.alert_time} {current_time}')
             if str(alert.alert_time) == current_time:
-                logger.info('TIME SUCCEEDED')
                 for account in project.yandex_direct_accounts.all():
                     account_report = yandex_direct_api.get_account_report(
                         account.api_key,
@@ -45,7 +44,8 @@ def every_day_alert():
                             'Расход: <b>' + '{:,.0f}'.format(account_report.cost) + '₽</b>\n'
                             'Баланс: <b>' + '{:,.0f}'.format(account_balance.amount) + '₽</b>\n'
                         )
-                        logger.info(message)
+
+                        logger.info(f'Notified {chat.chat_id}')
                         send_message_to_chat(chat.chat_id, message)
 
 
@@ -53,6 +53,7 @@ def every_day_alert():
 def balance_change_alert():
     projects = Project.objects.all()
     yandex_direct_api = YandexDirectAPI()
+    logger.info("Started balance_change_alert job")
 
     for project in projects:
         for alert in project.alerts.all():
@@ -62,12 +63,14 @@ def balance_change_alert():
                 )
 
                 if account_balance.amount < account.min_sum and not account.notified:
+                    logger.info(f"Balance is low for {account_balance.login}. Started notifying")
+
                     for chat in alert.chat.all():
                         message = (
                                 f'Оповещение о <b>необходимости пополнения</b> аккаунта <i>{account_balance.login}</i>!\n\n'
                                 'Баланс: <b>' + '{:,.0f}'.format(account_balance.amount) + '₽</b>\n'
                         )
-                        logger.info(message)
+                        logger.info(f"Notifying {chat.chat_id}")
                         send_message_to_chat(chat.chat_id, message)
                     account.notified = True
                     account.save()
