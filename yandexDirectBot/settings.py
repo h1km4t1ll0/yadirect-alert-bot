@@ -141,7 +141,7 @@ CELERY_BEAT_SCHEDULE = {
     },
     'balance_change_alert': {
         'task': 'yandexDirectBot.tasks.balance_change_alert',
-        'schedule': 3600,  # Run every 3600 seconds (once an hour)
+        'schedule': 300,  # Run every 3600 seconds (once an hour)
     },
 }
 
