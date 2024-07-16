@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 def every_day_alert():
     projects = Project.objects.all()
     current_time = datetime.datetime.now().strftime('%H:%M:00')
-    current_date = datetime.datetime.now().strftime('%Y-%m-%d')
+    date_from = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
     logger.info("Started every_day_alert job")
     yandex_direct_api = YandexDirectAPI()
 
@@ -26,7 +26,7 @@ def every_day_alert():
                 for account in project.yandex_direct_accounts.all():
                     account_report = yandex_direct_api.get_account_report(
                         account.api_key,
-                        current_date
+                        date_from
                     )
                     account_balance = yandex_direct_api.get_account_balance(
                         account.api_key
