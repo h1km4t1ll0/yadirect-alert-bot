@@ -75,6 +75,14 @@ def balance_change_alert():
                         send_message_to_chat(chat.chat_id, message)
                     account.notified = True
                     account.save()
-                elif account_balance.amount > account.min_sum:
+                elif account_balance.amount >= account.min_sum:
+                    for chat in alert.chat.all():
+                        message = (
+                                f'Баланс аккаунта <i>{account_balance.login}</i> пополнен!\n\n'
+                                'Текущий баланс: <b>' + '{:,.0f}'.format(account_balance.amount) + '₽</b>\n'
+                        )
+                        logger.info(f"Notifying {chat.chat_id}")
+                        send_message_to_chat(chat.chat_id, message)
+
                     account.notified = False
                     account.save()
