@@ -7,10 +7,12 @@ from yandexDirectBot.settings import BOT_TOKEN, SERVER_MODE, DOMAIN
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
-if SERVER_MODE:
-    bot.set_webhook(url=f'https://{DOMAIN}/{BOT_TOKEN}')
-else:
-    bot.remove_webhook()
+
+def do_webhook():
+    if SERVER_MODE:
+        bot.set_webhook(url=f'https://{DOMAIN}/{BOT_TOKEN}')
+    else:
+        bot.remove_webhook()
 
 
 def send_message_to_chat(chat_id: str, message: str):

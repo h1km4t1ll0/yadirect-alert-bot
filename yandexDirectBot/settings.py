@@ -134,7 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 YANDEX_DIRECT_BASE_URL = os.environ.get("YANDEX_DIRECT_BASE_URL", 'https://api.direct.yandex.ru')
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL", 'redis://localhost:6379')
 CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND", 'redis://localhost:6379')
-BOT_TOKEN = os.environ.get('BOT_TOKEN', '5502157518:AAFdU2iAwrUvApAzHHu4kmurEbUa5qYq27A')
+BOT_TOKEN = os.environ.get('BOT_TOKEN', '')
 
 CELERY_BEAT_SCHEDULE = {
     'every_day_alert': {
