@@ -4,7 +4,8 @@ import logging
 from celery.app import shared_task
 
 from yandexDirectBot.models import Project
-from yandexDirectBot.src.telegram_alert import send_message_to_chat
+from yandexDirectBot.src.telegram_api import send_message_to_chat
+from yandexDirectBot.src.utils import format_number
 from yandexDirectBot.src.yandex_direct_api.api import YandexDirectAPI
 
 logger = logging.getLogger(__name__)
@@ -20,14 +21,14 @@ def every_day_alert():
 
     for project in projects:
         for alert in project.alerts.all():
-            logger.info(alert.alert_time)
-            logger.info(f'{alert.alert_time == current_time} {alert.alert_time} {current_time}')
             if str(alert.alert_time) == current_time:
                 for account in project.yandex_direct_accounts.all():
                     account_report = yandex_direct_api.get_account_report(
                         account.api_key,
-                        date_from
+                        date_from,
+                        project.goals
                     )
+
                     account_balance = yandex_direct_api.get_account_balance(
                         account.api_key
                     )
@@ -35,16 +36,36 @@ def every_day_alert():
                     for chat in alert.chat.all():
                         if account_report.error_message:
                             logger.error(account_report.error_message)
+                        if project.goals is not None and len(project.goals) > 0:
+                            cost_per_conversion_string = ''
+                            for cost_per_conversion in account_report.cost_per_conversion:
+                                cost_per_conversion_string += (
+                                    f'Цена конверсии для цели <i>{cost_per_conversion['goal']}</i>: '
+                                    f'<b>{cost_per_conversion["cost"]}₽</b>\n'
+                                )
 
-                        message = (
-                            f'Ежедневный отчет по аккаунту <i>{account_balance.login}</i>\n\n'
-                            f'Показы: <b>{account_report.impressions}</b>\n'
-                            f'Клики: <b>{account_report.clicks}</b>\n'
-                            f'Конверсии: <b>{account_report.conversions}</b>\n'
-                            'Расход: <b>' + '{:,.0f}'.format(account_report.cost) + '₽</b>\n'
-                            'Расход с НДС: <b>' + '{:,.0f}'.format(account_report.cost_with_vat) + '₽</b>\n'
-                            'Баланс: <b>' + '{:,.0f}'.format(account_balance.amount) + '₽</b>\n'
-                        )
+                            message = (
+                                f'Ежедневный отчет по аккаунту <i>{account_balance.login}</i>\n\n'
+                                f'Показы: <b>{account_report.impressions}</b>\n'
+                                f'Клики: <b>{account_report.clicks}</b>\n'
+                                f'Конверсии: <b>{account_report.conversions}</b>\n'
+                                f'{cost_per_conversion_string}'
+                                f'Расход: <b>{account_report.cost}₽</b>\n'
+                                f'Расход с НДС: <b> {format_number(account_report.cost_with_vat)}₽</b>\n'
+                                f'Баланс на {datetime.datetime.now().strftime('%Y-%m-%d')}: '
+                                f'<b>{format_number(account_balance.amount)}₽</b>\n'
+                            )
+                        else:
+                            message = (
+                                f'Ежедневный отчет по аккаунту <i>{account_balance.login}</i>\n\n'
+                                f'Показы: <b>{account_report.impressions}</b>\n'
+                                f'Клики: <b>{account_report.clicks}</b>\n'
+                                f'Конверсии: <b>{account_report.conversions}</b>\n'
+                                f'Расход: <b>{account_report.cost}₽</b>\n'
+                                f'Расход с НДС: <b> {format_number(account_report.cost_with_vat)}₽</b>\n'
+                                f'Баланс на {datetime.datetime.now().strftime('%Y-%m-%d')}: '
+                                f'<b>{format_number(account_balance.amount)}₽</b>\n'
+                            )
 
                         logger.info(f'Notified {chat.chat_id}')
                         send_message_to_chat(chat.chat_id, message)

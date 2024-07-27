@@ -1,4 +1,5 @@
 from django.db import models
+from django_jsonform.models.fields import JSONField
 
 
 class Chat(models.Model):
@@ -93,6 +94,33 @@ class YandexDirectAccount(models.Model):
 
 
 class Project(models.Model):
+    ITEMS_SCHEMA = {
+        'type': 'array',
+        'items': {
+            'type': 'object',
+            'keys': {
+                'name': {
+                    'type': 'string',
+                    'title': 'Название цели',
+                    'required': True
+                },
+                'goal': {
+                    'type': 'string',
+                    'title': 'Идентификатор цели',
+                    'required': True
+                }
+            }
+        }
+    }
+
+    goals = JSONField(
+        schema=ITEMS_SCHEMA,
+        null=True,
+        default=None,
+        verbose_name='Цели',
+        blank=True,
+    )
+
     alerts = models.ManyToManyField(
         to=Alert,
         verbose_name='Уведомления',

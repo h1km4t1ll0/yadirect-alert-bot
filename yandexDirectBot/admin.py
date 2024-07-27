@@ -17,8 +17,8 @@ class ChatAdmin(admin.ModelAdmin):
 @admin.register(Alert)
 class AlertAdmin(admin.ModelAdmin):
     list_display = [
+        'alert_time',
         'chats',
-        'alert_time'
     ]
 
     def chats(self, alert: Alert):
@@ -42,9 +42,10 @@ class YandexDirectAccountAdmin(admin.ModelAdmin):
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = [
+        'name',
         'alerts_',
         'yandex_direct_accounts_',
-        'name',
+        'goals_'
     ]
 
     def alerts_(self, project: Project):
@@ -58,4 +59,10 @@ class ProjectAdmin(admin.ModelAdmin):
     def yandex_direct_accounts_(self, project: Project):
         return ', '.join(yandex_direct_account.name for yandex_direct_account in project.yandex_direct_accounts.all())
 
+    def goals_(self, project: Project):
+        return list(map(lambda goal: goal['name'], project.goals))
+
     form = ProjectForm
+    yandex_direct_accounts_.short_description = 'Аккаунты Яндекс.Директ'
+    alerts_.short_description = 'Уведомления'
+    goals_.short_description = 'Цели'

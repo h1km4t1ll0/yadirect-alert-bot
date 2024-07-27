@@ -38,7 +38,12 @@ class YandexDirectAPI:
         logging.info(req.json()['data']['Accounts'])
         return AccountBalance.build(req.json()['data']['Accounts'][0])
 
-    def get_account_report(self, token: str, date_from: str) -> AccountStatistics:
+    def get_account_report(
+            self,
+            token: str,
+            date_from: str,
+            goals: list[dict[str, str]] | None = None
+    ) -> AccountStatistics:
         body_raw = {
             "method": "get",
             "params": {
@@ -46,7 +51,7 @@ class YandexDirectAPI:
                     "DateFrom": date_from,
                     "DateTo": datetime.now().strftime('%Y-%m-%d')
                 },
-                "FieldNames": ["Clicks", "Impressions", "Conversions", "Cost"],
+                "FieldNames": ["Clicks", "Impressions", "Cost", "Conversions"],
                 "ReportType": "CUSTOM_REPORT",
                 "DateRangeType": "CUSTOM_DATE",
                 "IncludeVAT": 'NO',
@@ -61,13 +66,20 @@ class YandexDirectAPI:
             "processingMode": "auto"
         }
 
+        if goals is not None:
+            body_raw['params']['Goals'] = list(map(lambda goal: goal['goal'], goals))
+            body_raw['params']['FieldNames'].append("CostPerConversion")
+
         body = json.dumps(body_raw, indent=4)
         req = requests.post(
             self.api_url + '/json/v5/reports',
             body,
             headers=headers
         )
-        account_statistics = AccountStatistics.build(req.content.decode('utf-8'))
+        account_statistics = AccountStatistics.build(
+            req.content.decode('utf-8'),
+            goals
+        )
 
         body_raw['params']['IncludeVAT'] = 'YES'
         body_raw['params']['FieldNames'] = ["Cost"]

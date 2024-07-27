@@ -1,4 +1,5 @@
 from django import forms
+from django_jsonform.widgets import JSONFormWidget
 
 from .models import Chat, Alert, YandexDirectAccount, Project
 from .widgets import TimePickerInput
@@ -43,5 +44,6 @@ class ProjectForm(forms.ModelForm):
         fields = (
             'name',
             'yandex_direct_accounts',
-            'alerts'
+            'alerts',
+            'goals'
         )

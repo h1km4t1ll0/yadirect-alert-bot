@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-%8&a)j$$*52dz+dp_-94r5&ce9=u*o5r-yn11l3%1734#s&bvx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", False)
 DOMAIN = os.environ.get("DOMAIN", None)
+SERVER_MODE = os.environ.get("SERVER", '') in ["True", True]
 
 ALLOWED_HOSTS = [DOMAIN, '127.0.0.1', 'localhost', f'https://{DOMAIN}']
 if not DEBUG:
     CSRF_TRUSTED_ORIGINS = [f'https://{DOMAIN}']
 
-if os.environ.get("SERVER", '') in ["True", True]:
+if SERVER_MODE:
     CSRF_TRUSTED_ORIGINS = [f'https://{DOMAIN}']
 
 # Application definition
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'yandexDirectBot',
+    'django_jsonform',
 ]
 
 MIDDLEWARE = [
@@ -128,11 +130,11 @@ STATIC_ROOT = '/app/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-### YandexDirect VARS ###
+# YandexDirect VARS 311515868 69279259
 YANDEX_DIRECT_BASE_URL = os.environ.get("YANDEX_DIRECT_BASE_URL", 'https://api.direct.yandex.ru')
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL", 'redis://localhost:6379')
 CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND", 'redis://localhost:6379')
-BOT_TOKEN = os.environ.get('BOT_TOKEN', '')
+BOT_TOKEN = os.environ.get('BOT_TOKEN', '5502157518:AAFdU2iAwrUvApAzHHu4kmurEbUa5qYq27A')
 
 CELERY_BEAT_SCHEDULE = {
     'every_day_alert': {
