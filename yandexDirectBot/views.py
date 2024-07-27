@@ -1,3 +1,5 @@
+import logging
+
 import django.http
 import telebot
 from yandexDirectBot.src.telegram_api import bot, do_webhook
@@ -15,4 +17,7 @@ def get_message(request: django.http.HttpRequest):
     return HttpResponse('Method Not Allowed', 405)
 
 
-do_webhook()
+try:
+    do_webhook()
+except Exception as e:
+    logging.error(e)
