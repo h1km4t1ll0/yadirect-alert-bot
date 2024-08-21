@@ -158,3 +158,10 @@ sentry_sdk.init(
     # We recommend adjusting this value in production.
     profiles_sample_rate=1.0,
 )
+
+# JAZZMIN SETTINGS
+JAZZMIN_SETTINGS = {
+    "topmenu_links": [
+        {"name": "Инструкция", "url": "/instruction", "new_window": True},
+    ],
+}
