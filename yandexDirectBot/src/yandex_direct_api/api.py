@@ -2,6 +2,7 @@ import json
 import logging
 import random
 import time
+import uuid
 from datetime import datetime
 
 import requests
@@ -56,7 +57,7 @@ class YandexDirectAPI:
                 "ReportType": "CUSTOM_REPORT",
                 "DateRangeType": "CUSTOM_DATE",
                 "IncludeVAT": 'NO',
-                "ReportName": f'report-{int(time.time()) + random.randint(0, 83773483)}',
+                "ReportName": f'report-{str(uuid.uuid4())}',
                 "Format": "TSV",
                 "IncludeDiscount": "NO"
             }
