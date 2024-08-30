@@ -1,5 +1,6 @@
 import json
 import logging
+import random
 import time
 from datetime import datetime
 
@@ -55,7 +56,7 @@ class YandexDirectAPI:
                 "ReportType": "CUSTOM_REPORT",
                 "DateRangeType": "CUSTOM_DATE",
                 "IncludeVAT": 'NO',
-                "ReportName": f'report-{int(time.time())}',
+                "ReportName": f'report-{int(time.time()) + random.randint(0, 83773483)}',
                 "Format": "TSV",
                 "IncludeDiscount": "NO"
             }
