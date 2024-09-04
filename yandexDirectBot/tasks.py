@@ -62,7 +62,7 @@ def every_day_alert():
                                 f'Клики: <b>{account_report.clicks}</b>\n'
                                 f'Конверсии: <b>{account_report.conversions}</b>\n'
                                 f'Расход: <b>{account_report.cost}₽</b>\n'
-                                f'Расход с НДС: <b> {format_number(account_report.cost_with_vat)}₽</b>\n'
+                                f'Расход с НДС: <b> {account_report.cost_with_vat}₽</b>\n'
                                 f'Баланс на {datetime.datetime.now().strftime("%Y-%m-%d")}: '
                                 f'<b>{format_number(account_balance.amount)}₽</b>\n'
                             )
