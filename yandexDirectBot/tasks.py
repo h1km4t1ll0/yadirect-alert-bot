@@ -66,7 +66,7 @@ def every_day_alert():
                                 f'Баланс на {datetime.datetime.now().strftime("%Y-%m-%d")}: '
                                 f'<b>{format_number(account_balance.amount)}₽</b>\n'
                             )
-                        logger.info(f'Account report: {account_report}')
+                        logger.info(f'Account report: {account_report.__dict__}')
                         logger.info(f'Notified {chat.chat_id}')
                         send_message_to_chat(chat.chat_id, message)
 
