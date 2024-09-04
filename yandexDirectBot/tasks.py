@@ -40,7 +40,7 @@ def every_day_alert():
                             cost_per_conversion_string = ''
                             for cost_per_conversion in account_report.cost_per_conversion:
                                 cost_per_conversion_string += (
-                                    f'Цена конверсии для цели <i>{cost_per_conversion['goal']}</i>: '
+                                    f'Цена конверсии для цели <i>{cost_per_conversion["goal"]}</i>: '
                                     f'<b>{cost_per_conversion["cost"]}₽</b>\n'
                                 )
 
@@ -52,7 +52,7 @@ def every_day_alert():
                                 f'{cost_per_conversion_string}'
                                 f'Расход: <b>{account_report.cost}₽</b>\n'
                                 f'Расход с НДС: <b> {format_number(account_report.cost_with_vat)}₽</b>\n'
-                                f'Баланс на {datetime.datetime.now().strftime('%Y-%m-%d')}: '
+                                f'Баланс на {datetime.datetime.now().strftime("%Y-%m-%d")}: '
                                 f'<b>{format_number(account_balance.amount)}₽</b>\n'
                             )
                         else:
@@ -63,7 +63,7 @@ def every_day_alert():
                                 f'Конверсии: <b>{account_report.conversions}</b>\n'
                                 f'Расход: <b>{account_report.cost}₽</b>\n'
                                 f'Расход с НДС: <b> {format_number(account_report.cost_with_vat)}₽</b>\n'
-                                f'Баланс на {datetime.datetime.now().strftime('%Y-%m-%d')}: '
+                                f'Баланс на {datetime.datetime.now().strftime("%Y-%m-%d")}: '
                                 f'<b>{format_number(account_balance.amount)}₽</b>\n'
                             )
 

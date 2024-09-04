@@ -17,7 +17,7 @@ class AccountStatistics:
 
         try:
             yandex_direct_data = rows[2].split('\t')
-            self.cost_with_vat = int(yandex_direct_data[0]) / 1000000
+            self.cost_with_vat = format_number(int(yandex_direct_data[0]) / 1000000)
         except Exception as e:
             logging.error('An error occurred while parsing cost with vat: ' + str(e) + 'Payload: ' + payload)
             self.cost_with_vat = 0
@@ -58,7 +58,7 @@ class AccountStatistics:
                         }
                     )
             else:
-                account_statistics.conversions = int(yandex_direct_data[2])
+                account_statistics.conversions = int(yandex_direct_data[3])
         except Exception as e:
             account_statistics.error_message = str(e)
             account_statistics.clicks = 0

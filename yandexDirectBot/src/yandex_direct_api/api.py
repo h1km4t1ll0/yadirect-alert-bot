@@ -1,13 +1,11 @@
 import json
 import logging
-import random
 import time
 import uuid
 from datetime import datetime
 
 import requests
 
-from yandexDirectBot import settings
 from yandexDirectBot.src.yandex_direct_api.account_balance import AccountBalance
 from yandexDirectBot.src.yandex_direct_api.account_statistics import AccountStatistics
 
