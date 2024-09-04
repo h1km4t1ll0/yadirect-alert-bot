@@ -29,6 +29,8 @@ def every_day_alert():
                         project.goals
                     )
 
+                    logger.info(f'Requesting data with goals: {project.goals}')
+
                     account_balance = yandex_direct_api.get_account_balance(
                         account.api_key
                     )
