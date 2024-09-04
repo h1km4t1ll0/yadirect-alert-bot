@@ -14,7 +14,68 @@ from yandexDirectBot.src.yandex_direct_api.account_statistics import AccountStat
 
 class YandexDirectAPI:
     def __init__(self):
-        self.api_url = settings.YANDEX_DIRECT_BASE_URL
+        self.api_url = 'https://api.direct.yandex.ru'
+
+    @staticmethod
+    def safely_execute_request(
+        api_url: str,
+        body: str,
+        headers: any = None,
+    ):
+        while True:
+            try:
+                req = requests.post(
+                    api_url,
+                    body,
+                    headers=headers
+                )
+                req.encoding = 'utf-8'  # Принудительная обработка ответа в кодировке UTF-8
+                print('get_account_balance', req.status_code)
+                if req.status_code == 400:
+                    print("Параметры запроса указаны неверно или достигнут лимит отчетов в очереди")
+                    print("RequestId: {}".format(req.headers.get("RequestId", False)))
+                    print("JSON-код ответа сервера: \n{}".format(req.json()))
+                    break
+                elif req.status_code == 200:
+                    print("Отчет создан успешно")
+                    print("RequestId: {}".format(req.headers.get("RequestId", False)))
+                    break
+                elif req.status_code == 201:
+                    print("Отчет успешно поставлен в очередь в режиме офлайн")
+                    retryIn = int(req.headers.get("retryIn", 60))
+                    print("Повторная отправка запроса через {} секунд".format(retryIn))
+                    print("RequestId: {}".format(req.headers.get("RequestId", False)))
+                    time.sleep(retryIn)
+                elif req.status_code == 202:
+                    print("Отчет формируется в режиме офлайн")
+                    retryIn = int(req.headers.get("retryIn", 60))
+                    print("Повторная отправка запроса через {} секунд".format(retryIn))
+                    print("RequestId:  {}".format(req.headers.get("RequestId", False)))
+                    time.sleep(retryIn)
+                elif req.status_code == 500:
+                    print("При формировании отчета произошла ошибка. Пожалуйста, попробуйте повторить запрос позднее")
+                    print("RequestId: {}".format(req.headers.get("RequestId", False)))
+                    print("JSON-код ответа сервера: \n{}".format(req.json()))
+                    break
+                elif req.status_code == 502:
+                    print("Время формирования отчета превысило серверное ограничение.")
+                    print(
+                        "Пожалуйста, попробуйте изменить параметры запроса - уменьшить период и "
+                        "количество запрашиваемых данных."
+                    )
+                    print("JSON-код запроса: {}".format(body))
+                    print("RequestId: {}".format(req.headers.get("RequestId", False)))
+                    print("JSON-код ответа сервера: \n{}".format(req.json()))
+                    break
+                else:
+                    print("Произошла непредвиденная ошибка")
+                    print("RequestId:  {}".format(req.headers.get("RequestId", False)))
+                    print("JSON-код запроса: {}".format(body))
+                    print("JSON-код ответа сервера: \n{}".format(req.json()))
+                    break
+            except Exception as e:
+                logging.error(e)
+        return req
 
     def get_account_balance(self, token: str) -> AccountBalance:
         body = {
@@ -25,9 +86,9 @@ class YandexDirectAPI:
             'token': token
         }
         headers = {
-                   "Authorization": "Bearer " + token,
-                   "Accept-Language": "ru",
-                   "processingMode": "auto"
+            "Authorization": "Bearer " + token,
+            "Accept-Language": "ru",
+            "processingMode": "auto"
         }
 
         body = json.dumps(body, indent=4)
@@ -73,11 +134,12 @@ class YandexDirectAPI:
             body_raw['params']['FieldNames'].append("CostPerConversion")
 
         body = json.dumps(body_raw, indent=4)
-        req = requests.post(
+        req = YandexDirectAPI.safely_execute_request(
             self.api_url + '/json/v5/reports',
             body,
             headers=headers
         )
+
         account_statistics = AccountStatistics.build(
             req.content.decode('utf-8'),
             goals
@@ -85,12 +147,14 @@ class YandexDirectAPI:
 
         body_raw['params']['IncludeVAT'] = 'YES'
         body_raw['params']['FieldNames'] = ["Cost"]
+        body_raw['params']['ReportName'] = f'report-{str(uuid.uuid4())}'
+
         body = json.dumps(body_raw, indent=4)
-        req = requests.post(
+        req = YandexDirectAPI.safely_execute_request(
             self.api_url + '/json/v5/reports',
             body,
             headers=headers
         )
-        account_statistics.set_cost_with_vat(req.content.decode('utf-8'))
 
+        account_statistics.set_cost_with_vat(req.content.decode('utf-8'))
         return account_statistics
