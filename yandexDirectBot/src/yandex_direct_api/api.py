@@ -127,7 +127,7 @@ class YandexDirectAPI:
             "processingMode": "auto"
         }
 
-        if goals is not None:
+        if goals is not None and len(goals) > 0:
             body_raw['params']['Goals'] = list(map(lambda goal: goal['goal'], goals))
             body_raw['params']['FieldNames'].append("CostPerConversion")
 
