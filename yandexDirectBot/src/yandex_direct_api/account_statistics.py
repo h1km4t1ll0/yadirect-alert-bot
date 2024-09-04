@@ -34,7 +34,7 @@ class AccountStatistics:
             account_statistics.impressions = format_number(int(yandex_direct_data[1]))
             account_statistics.cost = format_number(int(yandex_direct_data[2]) / 1000000)
 
-            if goals is not None:
+            if goals is not None and len(goals) > 0:
                 offset = 3
                 goal_length = len(goals)
 
