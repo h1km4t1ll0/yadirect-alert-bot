@@ -47,7 +47,8 @@ def every_day_alert():
                                 )
 
                             message = (
-                                f'Ежедневный отчет по аккаунту <i>{account_balance.login}</i>\n\n'
+                                f'Ежедневный отчет по аккаунту <i>{account_balance.login}</i>\n'
+                                f'Дата отчета: {date_from}-{datetime.datetime.now().strftime("%Y-%m-%d")}\n\n'
                                 f'Показы: <b>{account_report.impressions}</b>\n'
                                 f'Клики: <b>{account_report.clicks}</b>\n'
                                 f'Конверсии: <b>{account_report.conversions}</b>\n'
@@ -59,7 +60,8 @@ def every_day_alert():
                             )
                         else:
                             message = (
-                                f'Ежедневный отчет по аккаунту <i>{account_balance.login}</i>\n\n'
+                                f'Ежедневный отчет по аккаунту <i>{account_balance.login}</i>\n'
+                                f'Дата отчета: {date_from}-{datetime.datetime.now().strftime("%Y-%m-%d")}\n\n'
                                 f'Показы: <b>{account_report.impressions}</b>\n'
                                 f'Клики: <b>{account_report.clicks}</b>\n'
                                 f'Конверсии: <b>{account_report.conversions}</b>\n'
