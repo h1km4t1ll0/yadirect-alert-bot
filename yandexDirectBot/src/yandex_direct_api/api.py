@@ -1,6 +1,5 @@
 import json
 import logging
-import pprint
 import time
 import uuid
 from datetime import datetime
@@ -17,9 +16,9 @@ class YandexDirectAPI:
 
     @staticmethod
     def safely_execute_request(
-        api_url: str,
-        body: str,
-        headers: any = None,
+            api_url: str,
+            body: str,
+            headers: any = None,
     ):
         while True:
             try:
