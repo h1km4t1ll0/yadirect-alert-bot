@@ -39,11 +39,12 @@ def every_day_alert():
                         if account_report.error_message:
                             logger.error(account_report.error_message)
                         if project.goals is not None and len(project.goals) > 0:
-                            cost_per_conversion_string = ''
-                            for cost_per_conversion in account_report.cost_per_conversion:
-                                cost_per_conversion_string += (
-                                    f'Цена конверсии для цели <i>{cost_per_conversion["goal"]}</i>: '
-                                    f'<b>{cost_per_conversion["cost"]}₽</b>\n'
+                            goals_data = ''
+                            for goal_data in account_report.goals_data:
+                                goals_data += (
+                                    f'\nЦель: <i>{goal_data["goal"]}</i>\n'
+                                    f'Цена конверсии: <b>{goal_data["cost"]}₽</b>\n'
+                                    f'Конверсий: <b>{goal_data["conversions"]}</b>\n\n'
                                 )
 
                             message = (
@@ -52,7 +53,7 @@ def every_day_alert():
                                 f'Показы: <b>{account_report.impressions}</b>\n'
                                 f'Клики: <b>{account_report.clicks}</b>\n'
                                 f'Конверсии: <b>{account_report.conversions}</b>\n'
-                                f'{cost_per_conversion_string}'
+                                f'{goals_data}'
                                 f'Расход: <b>{account_report.cost}₽</b>\n'
                                 f'Расход с НДС: <b> {account_report.cost_with_vat}₽</b>\n'
                                 f'Баланс на {datetime.datetime.now().strftime("%Y-%m-%d")}: '
