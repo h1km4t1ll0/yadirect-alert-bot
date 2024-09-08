@@ -42,9 +42,9 @@ def every_day_alert():
                             goals_data = ''
                             for goal_data in account_report.goals_data:
                                 goals_data += (
-                                    f'\nЦель: <i>{goal_data["goal"]}</i>\n'
+                                    f'\n\nЦель: <i>{goal_data["goal"]}</i>\n'
                                     f'Цена конверсии: <b>{goal_data["cost"]}₽</b>\n'
-                                    f'Конверсий: <b>{goal_data["conversions"]}</b>\n\n'
+                                    f'Конверсий: <b>{goal_data["conversions"]}</b>'
                                 )
 
                             message = (
@@ -52,8 +52,8 @@ def every_day_alert():
                                 f'Дата отчета: <b>{date_from}</b>\n\n'
                                 f'Показы: <b>{account_report.impressions}</b>\n'
                                 f'Клики: <b>{account_report.clicks}</b>\n'
-                                f'Конверсии: <b>{account_report.conversions}</b>\n'
-                                f'{goals_data}'
+                                f'Конверсии: <b>{account_report.conversions}</b>'
+                                f'{goals_data}\n\n'
                                 f'Расход: <b>{account_report.cost}₽</b>\n'
                                 f'Расход с НДС: <b> {account_report.cost_with_vat}₽</b>\n'
                                 f'Баланс на {datetime.datetime.now().strftime("%Y-%m-%d")}: '
