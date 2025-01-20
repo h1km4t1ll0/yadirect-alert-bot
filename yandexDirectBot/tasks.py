@@ -27,7 +27,7 @@ def every_day_alert():
                     account_report = yandex_direct_api.get_account_report(
                         account.api_key,
                         date_from,
-                        date_to,
+                        date_from,
                         project.goals
                     )
 
