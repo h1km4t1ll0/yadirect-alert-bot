@@ -16,6 +16,7 @@ def every_day_alert():
     projects = Project.objects.all()
     current_time = datetime.datetime.now().strftime('%H:%M:00')
     date_from = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
+    date_to = datetime.datetime.now().strftime('%Y-%m-%d')
     logger.info("Started every_day_alert job")
     yandex_direct_api = YandexDirectAPI()
 
@@ -26,6 +27,7 @@ def every_day_alert():
                     account_report = yandex_direct_api.get_account_report(
                         account.api_key,
                         date_from,
+                        date_to,
                         project.goals
                     )
 
@@ -48,7 +50,7 @@ def every_day_alert():
                                 )
 
                             message = (
-                                f'Ежедневный отчет по аккаунту <i>{account_balance.login}</i>\n'
+                                f'Ежедневный отчет по аккаунту <i>{account.name}</i>\n'
                                 f'Дата отчета: <b>{date_from}</b>\n\n'
                                 f'Показы: <b>{account_report.impressions}</b>\n'
                                 f'Клики: <b>{account_report.clicks}</b>\n'
@@ -61,7 +63,7 @@ def every_day_alert():
                             )
                         else:
                             message = (
-                                f'Ежедневный отчет по аккаунту <i>{account_balance.login}</i>\n'
+                                f'Ежедневный отчет по аккаунту <i>{account.name}</i>\n'
                                 f'Дата отчета: <b>{date_from}</b>\n\n'
                                 f'Показы: <b>{account_report.impressions}</b>\n'
                                 f'Клики: <b>{account_report.clicks}</b>\n'
@@ -94,7 +96,7 @@ def balance_change_alert():
 
                     for chat in alert.chat.all():
                         message = (
-                                f'Оповещение о <b>необходимости пополнения</b> аккаунта <i>{account_balance.login}</i>!\n\n'
+                                f'Оповещение о <b>необходимости пополнения</b> аккаунта <i>{account.name}</i>!\n\n'
                                 'Баланс: <b>' + '{:,.0f}'.format(account_balance.amount) + '₽</b>\n'
                         )
                         logger.info(f"Notifying {chat.chat_id}")
@@ -104,7 +106,7 @@ def balance_change_alert():
                 elif account_balance.amount >= account.min_sum and account.notified:
                     for chat in alert.chat.all():
                         message = (
-                                f'Баланс аккаунта <i>{account_balance.login}</i> пополнен!\n\n'
+                                f'Баланс аккаунта <i>{account.name}</i> пополнен!\n\n'
                                 'Текущий баланс: <b>' + '{:,.0f}'.format(account_balance.amount) + '₽</b>\n'
                         )
                         logger.info(f"Notifying {chat.chat_id}")

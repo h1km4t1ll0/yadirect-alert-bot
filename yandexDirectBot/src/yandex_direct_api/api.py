@@ -103,6 +103,7 @@ class YandexDirectAPI:
             self,
             token: str,
             date_from: str,
+            date_to: str,
             goals: list[dict[str, str]] | None = None
     ) -> AccountStatistics:
         body_raw = {
@@ -110,7 +111,7 @@ class YandexDirectAPI:
             "params": {
                 "SelectionCriteria": {
                     "DateFrom": date_from,
-                    "DateTo": datetime.now().strftime('%Y-%m-%d')
+                    "DateTo": date_to,
                 },
                 "FieldNames": ["Clicks", "Impressions", "Cost", "Conversions"],
                 "ReportType": "CUSTOM_REPORT",
