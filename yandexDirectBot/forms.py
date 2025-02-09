@@ -34,8 +34,7 @@ class YandexDirectAccountForm(forms.ModelForm):
             'name',
             'api_key',
             'min_sum',
-            'notified',
-            'monthly_budget'
+            'notified'
         )
 
 
