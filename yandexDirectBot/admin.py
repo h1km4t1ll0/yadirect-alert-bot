@@ -33,7 +33,9 @@ class YandexDirectAccountAdmin(admin.ModelAdmin):
         'name',
         'api_key',
         'min_sum',
-        'notified'
+        'notified',
+        'monthly_budget',
+        'monthly_summ',
     ]
 
     form = YandexDirectAccountForm
