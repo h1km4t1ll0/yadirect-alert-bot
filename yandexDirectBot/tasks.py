@@ -50,14 +50,14 @@ def every_day_alert():
                             planned_consumption_value = planned_consumption_value / calendar.monthrange(now.year, now.month)[1]
 
                             if now.day == 1 or account.monthly_summ == 0:
-                                account.monthly_summ = planned_consumption_value
+                                account.monthly_summ = account_report.actual_cost
                             else:
-                                account.monthly_summ += planned_consumption_value
+                                account.monthly_summ += account_report.actual_cost
                             account.save()
 
                             planned_consumption_text = (
                                 f'Плановый расход: <b>{planned_consumption_value}</b>\n'
-                                f'Сумма расходов: <b>{(account.monthly_summ / account.monthly_budget):.2f}%</b>\n\n'
+                                f'Сумма расходов: <b>{((account.monthly_summ / account.monthly_budget) * 100):.0f}%</b>\n\n'
                             )
 
                         if project.goals is not None and len(project.goals) > 0:

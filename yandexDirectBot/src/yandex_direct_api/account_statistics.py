@@ -8,6 +8,7 @@ class AccountStatistics:
     impressions: int
     conversions: int
     cost: float
+    actual_cost: int
     cost_with_vat: float
     error_message: str | None = None
     goals_data: list[dict[str, str]] | None = None
@@ -38,6 +39,8 @@ class AccountStatistics:
             account_statistics.clicks = format_number(int(yandex_direct_data[0]))
             account_statistics.impressions = format_number(int(yandex_direct_data[1]))
             account_statistics.cost = format_number(int(yandex_direct_data[2]) / 1000000)
+            account_statistics.actual_cost = int(int(yandex_direct_data[2]) / 1000000)
+
 
             if goals is not None and len(goals) > 0:
                 offset = 3
@@ -73,6 +76,7 @@ class AccountStatistics:
             account_statistics.impressions = 0
             account_statistics.conversions = 0
             account_statistics.cost = 0
+            account_statistics.actual_cost = 0
 
             logging.error('An error occurred while parsing report: ' + str(e) + ' Payload: ' + payload)
 
