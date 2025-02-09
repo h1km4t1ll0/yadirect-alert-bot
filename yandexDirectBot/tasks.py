@@ -1,5 +1,7 @@
+import calendar
 import datetime
 import logging
+from threading import active_count
 
 from celery.app import shared_task
 
@@ -40,6 +42,24 @@ def every_day_alert():
                     for chat in alert.chat.all():
                         if account_report.error_message:
                             logger.error(account_report.error_message)
+
+                        planned_consumption_value = account.monthly_budget
+                        planned_consumption_text = ''
+                        if planned_consumption_value > 0:
+                            now = datetime.datetime.now()
+                            planned_consumption_value = planned_consumption_value / calendar.monthrange(now.year, now.month)[1]
+
+                            if now.day == 1 or account.monthly_summ == 0:
+                                account.monthly_summ = planned_consumption_value
+                            else:
+                                account.monthly_summ += planned_consumption_value
+                            account.save()
+
+                            planned_consumption_text = (
+                                f'Плановый расход: <b>{planned_consumption_value}</b>\n'
+                                f'Сумма расходов: <b>{(account.monthly_summ / account.monthly_budget):.2f}%</b>\n\n'
+                            )
+
                         if project.goals is not None and len(project.goals) > 0:
                             goals_data = ''
                             for goal_data in account_report.goals_data:
@@ -58,6 +78,7 @@ def every_day_alert():
                                 f'{goals_data}\n\n'
                                 f'Расход: <b>{account_report.cost}₽</b>\n'
                                 f'Расход с НДС: <b> {account_report.cost_with_vat}₽</b>\n'
+                                f'{planned_consumption_text}'
                                 f'Баланс на {datetime.datetime.now().strftime("%Y-%m-%d")}: '
                                 f'<b>{format_number(account_balance.amount)}₽</b>\n'
                             )
@@ -70,6 +91,7 @@ def every_day_alert():
                                 f'Конверсии: <b>{account_report.conversions}</b>\n'
                                 f'Расход: <b>{account_report.cost}₽</b>\n'
                                 f'Расход с НДС: <b> {account_report.cost_with_vat}₽</b>\n'
+                                f'{planned_consumption_text}'
                                 f'Баланс на {datetime.datetime.now().strftime("%Y-%m-%d")}: '
                                 f'<b>{format_number(account_balance.amount)}₽</b>\n'
                             )
@@ -114,3 +136,6 @@ def balance_change_alert():
 
                     account.notified = False
                     account.save()
+
+
+every_day_alert()
