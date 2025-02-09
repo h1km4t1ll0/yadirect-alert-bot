@@ -76,20 +76,6 @@ class YandexDirectAccount(models.Model):
         default=False
     )
 
-    monthly_budget = models.IntegerField(
-        verbose_name='Бюджет на месяц',
-        null=True,
-        blank=True,
-        default=0
-    )
-
-    monthly_summ= models.IntegerField(
-        verbose_name='Текущая сумма расходов',
-        null=True,
-        blank=True,
-        default=0
-    )
-
     min_sum = models.IntegerField(
         verbose_name='Порог для уведомления',
         null=False,
