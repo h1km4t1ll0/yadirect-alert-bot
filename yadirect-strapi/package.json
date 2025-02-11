@@ -1,0 +1,52 @@
+{
+  "name": "newspaper-strapi",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "deploy": "strapi deploy"
+  },
+  "dependencies": {
+    "@strapi/plugin-cloud": "4.25.11",
+    "@strapi/plugin-i18n": "4.25.11",
+    "@strapi/plugin-users-permissions": "4.25.11",
+    "@strapi/strapi": "4.25.11",
+    "@types/download": "^8.0.5",
+    "@types/koa": "^2.15.0",
+    "@types/luxon": "^3.4.2",
+    "@types/mime-types": "^2.1.4",
+    "@types/mmmagic": "^0.4.33",
+    "@types/node-telegram-bot-api": "^0.64.7",
+    "@types/uuid": "^10.0.0",
+    "check-video-codec": "^1.1.1",
+    "download": "^8.0.0",
+    "koa": "^2.15.3",
+    "luxon": "^3.5.0",
+    "mime-types": "^2.1.35",
+    "minio": "^7.1.0",
+    "mmmagic": "^0.5.3",
+    "node-telegram-bot-api": "^0.66.0",
+    "pg": "8.8.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "5.3.4",
+    "sqlite3": "^5.1.7",
+    "styled-components": "5.3.3",
+    "telegraf": "^4.16.3"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "9a59670a-3d26-4481-b2fb-6ed477a9c4f5"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

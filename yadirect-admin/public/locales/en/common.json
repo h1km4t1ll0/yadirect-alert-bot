@@ -1,0 +1,852 @@
+{
+  "app": {
+    "dashboard": "Dashboard",
+    "orders": "Orders",
+    "users": "Users",
+    "clients": "Clients",
+    "account-remove-requests": "Account remove requests",
+    "admins": "Administrators",
+    "menu": "Menu",
+    "products": "Products",
+    "modifiers": "Modifiers",
+    "categories": "Product categories",
+    "modifier-categories": "Modifier categories",
+    "menu-items": "Products in menu",
+    "menu-modifier-items": "Modifiers in menu",
+    "content": "Content",
+    "custom-screens": "Service screens",
+    "faqs": "FAQ",
+    "settings": "Settings",
+    "shops": "Shops",
+    "global-setting": "Global settings"
+  },
+  "documentTitle": {
+    "default": "refine",
+    "suffix": " | refine",
+    "statistics": {
+      "list": "Dashboard | refine"
+    },
+    "orders": {
+      "list": "Orders | refine",
+      "edit": "#{{id}} Edit order | refine"
+    },
+    "products": {
+      "list": "Products | refine",
+      "edit": "#{{id}} Edit product | refine",
+      "create": "Add product | refine"
+    },
+    "modifiers": {
+      "list": "Modifiers | refine",
+      "edit": "#{{id}} Edit modifier | refine",
+      "create": "Add modifier | refine"
+    },
+    "categories": {
+      "list": "Product categories | refine",
+      "edit": "#{{id}} Edit product category | refine",
+      "create": "Add product category | refine"
+    },
+    "modifier-categories": {
+      "list": "Modifier categories | refine",
+      "edit": "#{{id}} Edit modifier category | refine",
+      "create": "Add modifier category | refine"
+    },
+    "menu-items": {
+      "list": "Products on display | refine",
+      "edit": "#{{id}} Edit product on display | refine",
+      "create": "Add product on display | refine"
+    },
+    "menu-modifier-items": {
+      "list": "Modifiers on display | refine",
+      "edit": "#{{id}} Edit modifier on display | refine",
+      "create": "Add modifier on display | refine"
+    },
+    "custom-screens": {
+      "list": "Service screens | refine",
+      "edit": "#{{id}} Edit service screen | refine",
+      "create": "Add service screen | refine",
+      "show": "#{{id}} Service screen | refine"
+    },
+    "faqs": {
+      "list": "FAQ | refine",
+      "edit": "#{{id}} Edit question | refine",
+      "create": "Add question | refine",
+      "show": "#{{id}} Question | refine"
+    },
+    "clients": {
+      "list": "Clients | refine",
+      "show": "#{{id}} Client | refine"
+    },
+    "account-remove-requests": {
+      "list": "Account deletion requests | refine"
+    },
+    "admins": {
+      "list": "Administrators | refine",
+      "edit": "#{{id}} Edit administrator | refine",
+      "create": "Add administrator | refine",
+      "show": "#{{id}} Administrator | refine"
+    },
+    "shops": {
+      "list": "Shops | refine",
+      "edit": "#{{id}} Edit shop | refine",
+      "create": "Add shop | refine"
+    },
+    "global-setting": {
+      "list": "Global settings | refine"
+    }
+  },
+  "pages": {
+    "login": {
+      "title": "Sign in to your account",
+      "signin": "Sign in",
+      "signup": "Sign up",
+      "divider": "or",
+      "fields": {
+        "email": "Email",
+        "password": "Password"
+      },
+      "errors": {
+        "validEmail": "Invalid email address"
+      },
+      "buttons": {
+        "submit": "Login",
+        "forgotPassword": "Forgot password?",
+        "noAccount": "Don’t have an account?",
+        "rememberMe": "Remember me"
+      }
+    },
+    "forgotPassword": {
+      "title": "Forgot your password?",
+      "fields": {
+        "email": "Email"
+      },
+      "errors": {
+        "validEmail": "Invalid email address"
+      },
+      "buttons": {
+        "submit": "Send reset instructions"
+      }
+    },
+    "register": {
+      "title": "Sign up for your account",
+      "fields": {
+        "email": "Email",
+        "password": "Password"
+      },
+      "errors": {
+        "validEmail": "Invalid email address"
+      },
+      "buttons": {
+        "submit": "Register",
+        "haveAccount": "Have an account?"
+      }
+    },
+    "updatePassword": {
+      "title": "Update password",
+      "fields": {
+        "password": "New Password",
+        "confirmPassword": "Confirm new password"
+      },
+      "errors": {
+        "confirmPasswordNotMatch": "Passwords do not match"
+      },
+      "buttons": {
+        "submit": "Update"
+      }
+    },
+    "error": {
+      "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
+      "404": "Sorry, the page you visited does not exist.",
+      "resource404": "Are you sure you have created the {{resource}} resource.",
+      "backHome": "Back Home"
+    }
+  },
+  "actions": {
+    "list": "List",
+    "create": "Create",
+    "edit": "Edit",
+    "show": "Show"
+  },
+  "table": {
+    "actions": "Actions",
+    "total": "Total",
+    "search": {
+      "phone": "Search by phone number",
+      "name": "Search by name",
+      "title": "Search by title",
+      "nameOrPhone": "Search by name or phone number",
+      "id": "Search by ID",
+      "order": "Search by order number",
+      "username": "Search by username",
+      "address": "Search by address"
+    }
+  },
+  "buttons": {
+    "create": "Create",
+    "save": "Save",
+    "logout": "Logout",
+    "delete": "Delete",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "confirm": "Are you sure?",
+    "filter": "Filter",
+    "clear": "Clear",
+    "refresh": "Refresh",
+    "show": "Show",
+    "undo": "Undo",
+    "import": "Import",
+    "clone": "Clone",
+    "notAccessTitle": "You don't have permission to access",
+    "true": "True",
+    "false": "False",
+    "on": "On",
+    "off": "Off",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "week": {
+    "MON": "Monday",
+    "TUE": "Tuesday",
+    "WED": "Wednesday",
+    "THU": "Thursday",
+    "FRI": "Friday",
+    "SAT": "Saturday",
+    "SUN": "Sunday"
+  },
+  "success": "Success",
+  "error": "Error",
+  "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
+  "dragImage": "Drag the new image into this area",
+  "notifications": {
+    "success": "Successful",
+    "error": "Error (status code: {{statusCode}})",
+    "undoable": "You have {{seconds}} seconds to undo",
+    "createSuccess": "Successfully created {{resource}}",
+    "createError": "There was an error creating {{resource}} (status code: {{statusCode}})",
+    "deleteSuccess": "Successfully deleted {{resource}}",
+    "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
+    "editSuccess": "Successfully edited {{resource}}",
+    "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
+    "importProgress": "Importing: {{processed}}/{{total}}"
+  },
+  "loading": "Loading",
+  "tags": {
+    "clone": "Clone"
+  },
+  "orderType": {
+    "TAKE_AWAY": "Takeaway",
+    "DINE_IN": "Hall",
+    "DELIVERY": "Delivery"
+  },
+  "paymentType": {
+    "CASH": "Cash",
+    "CARD": "Card",
+    "INVOICE": "Invoice"
+  },
+  "calc": {
+    "NONE": "None",
+    "VOLUME": "Volume",
+    "WEIGHT": "Weight"
+  },
+  "productType": {
+    "DISH": "Dish",
+    "SERVICE": "Service",
+    "ITEM": "Item"
+  },
+  "dashboard": {
+    "title": "Dashboard"
+  },
+  "statistics": {
+    "titles": {
+      "show": "Dashboard"
+    },
+    "datePicker": {
+      "today": "Today",
+      "lastWeek": "Last week",
+      "lastTwoWeeks": "Last 2 weeks",
+      "lastMonth": "Last month",
+      "lastThreeMonths": "Last 3 months"
+    },
+    "header": {
+      "selectDate": "Period",
+      "selectShops": "Selected shops",
+      "allShops": "All shops"
+    },
+    "mainData": "Main data",
+    "orders": "Orders",
+    "revenue": "Revenue",
+    "averageBill": "Average bill",
+    "week": "Week",
+    "locale": "en-US",
+    "total": "Total",
+    "averagePerPerson": "Average per person",
+    "created": "Created",
+    "paid": "Paid",
+    "ordersByStatus": "Orders by payment status",
+    "payStatus": {
+      "WAIT_PAYMENT": "Awaiting payment",
+      "PAID": "Paid",
+      "CANCELED": "Canceled"
+    },
+    "amount": "Amount",
+    "products": "Products",
+    "productFields": {
+      "index": "№",
+      "product_title": "Title",
+      "sum_amount": "Total sold",
+      "proportion": "Orders with this product",
+      "total": "Total"
+    },
+    "noData": "No data"
+  },
+  "orders": {
+    "fields": {
+      "id": "ID",
+      "user": "Client",
+      "fio": "Full name",
+      "phone": "Phone number",
+      "alfaOrderId": "Alphabank order ID",
+      "creditCardId": "Credit card ID",
+      "iikoProductId": "IIKO product ID",
+      "iikoOrganizationId": "IIKO organization ID",
+      "availability": "Available",
+      "shop": "Shop",
+      "status": "Payment status",
+      "orderCookingStatus": "Cooking status",
+      "orderType": "Order type",
+      "paymentType": "Payment type",
+      "createdAt": "Creation date",
+      "orderDate": "Order date",
+      "time": "Time",
+      "orderTime": "Order time",
+      "total": "Total",
+      "billUrl": "Bill url",
+      "bonuses": "Bonuses",
+      "promoCode": "Promo code",
+      "totalItemsCost": "Total cost",
+      "totalItemCostForPay": "Total cost for payment",
+      "itemsDiscount": "Total discount",
+      "deliveryCost": "Delivery cost",
+      "comment": "Comment",
+      "onlinePayment": "Online payment",
+      "products": "Products",
+      "productData": "Product data",
+      "price": "Price",
+      "amount": "Amount",
+      "offName": "Name",
+      "inn": "TIN",
+      "kpp": "CRR",
+      "legalAddress": "Legal address",
+      "email": "Email",
+      "invoiceUrl": "Payment invoice",
+      "taxType": "Tax type",
+      "nds": "VAT",
+      "product": {
+        "title": "Name",
+        "description": "Description",
+        "iikoId": "ID IIKO",
+        "imageUrl": "Image",
+        "type": "Product type",
+        "paramCalculationType": "Calculation parameter",
+        "modifier": "Modifiers",
+        "modifierData": "Modifier data",
+        "modifierCategory": "Modifier category"
+      },
+      "confirmTitle": "Change status",
+      "confirmDescription": "Are you sure you want to change status?"
+    },
+    "details": "Details",
+    "payment": "Payment",
+    "tax": "Tax",
+    "orders": "Orders",
+    "titles": {
+      "edit": "Edit order",
+      "list": "Orders"
+    },
+    "success": {
+      "edit": "Order was successfully updated"
+    },
+    "selectShops": "Select shops",
+    "selectPaymentStatus": "Select payment statuses",
+    "selectCookingStatus": "Select cooking statuses",
+    "selectOrderType": "Select order types",
+    "selectPaymentType": "Select payment types"
+  },
+  "order": {
+    "status": {
+      "waitPayment": "Awaiting payment",
+      "paid": "Paid",
+      "canceled": "Canceled"
+    },
+    "cooking": {
+      "created": "Created",
+      "unconfirmed": "Not confirmed",
+      "waiting": "Start cooking soon",
+      "cookingStarted": "Cooking",
+      "cookingCompleted": "Cooked",
+      "onWay": "On the way",
+      "delivered": "Delivered",
+      "closed": "Closed",
+      "canceled": "Canceled"
+    }
+  },
+  "clients": {
+    "titles": {
+      "show": "Clients",
+      "list": "Clients"
+    },
+    "buttons": {
+      "refresh": "Refresh",
+      "viewOrderHistory": "View order history"
+    },
+    "fields": {
+      "id": "ID",
+      "username": "Username",
+      "email": "Email",
+      "password": "Password",
+      "confirmed": "Confirmed",
+      "blocked": "Blocked",
+      "phone": "Phone number",
+      "sex": "Sex",
+      "birthday": "Birthday",
+      "fio": "Full name",
+      "broadcastOfferAccepted": "Accepted \"Show ads\"",
+      "registrationCompleted": "Registration completed"
+    },
+    "yes": "True",
+    "no": "False",
+    "MALE": "Male",
+    "FEMALE": "Female",
+    "NOT_SELECTED": "Not specified"
+  },
+  "account-remove-requests": {
+    "account-remove-requests": "Account remove request",
+    "fields": {
+      "id": "ID",
+      "user": "User",
+      "status": "Status"
+    },
+    "titles": {
+      "list": "Account remove requests"
+    },
+    "filters": {
+      "all": "All",
+      "opened": "Opened",
+      "processed": "Processed"
+    },
+    "status": {
+      "opened": "Opened",
+      "canceled": "Canceled",
+      "accepted": "Accepted",
+      "empty": ""
+    },
+    "success": {
+      "accept": "Account remove request was accepted successfully",
+      "cancel": "Account remove request was canceled successfully"
+    }
+  },
+  "admins": {
+    "admins": "Administrator",
+    "titles": {
+      "list": "Administrators",
+      "create": "Add administrator",
+      "edit": "Edit administrator",
+      "show": "Administrator"
+    },
+    "add": "Add",
+    "save": "Save",
+    "success": {
+      "edit": "Administrator was successfully updated",
+      "create": "Administrator was successfully added",
+      "delete": "Administrator was successfully removed"
+    },
+    "errors": {
+      "This attribute must be unique": "Phone number is already in use",
+      "Email already taken": "Email is already in use"
+    },
+    "validation": {
+      "fieldRequired": "This field is required",
+      "usernameMinLength": "Username should be at least 3 letters",
+      "emailMinLength": "Email should be at least 6 letters",
+      "invalidEmail": "Email is not valid",
+      "passwordMinLength": "Password should be at least 6 letters",
+      "phoneMinLength": "Phone number should be at least 11 letters",
+      "phoneMaxLength": "Phone number should not be over 11 letters"
+    }
+  },
+  "products": {
+    "FAT": "Fat",
+    "PROTEIN": "Protein",
+    "CARBOHYDRATE": "Carbohydrate",
+    "CALORIES": "Calories",
+    "WEIGHT": "Weight",
+    "VOLUME": "Volume",
+    "products": "Product",
+    "chooseCategories": "Choose categories",
+    "fields": {
+      "id": "Id",
+      "category": "Category",
+      "title": "Title",
+      "imageUrl": "Image",
+      "description": "Description",
+      "paramCalculationType": "Param calculation type",
+      "type": "Type",
+      "params": "Nutrients"
+    },
+    "titles": {
+      "create": "Create product",
+      "edit": "Edit product",
+      "list": "Products"
+    },
+    "success": {
+      "create": "Product was successfully added",
+      "edit": "Product was successfully edited",
+      "delete": "Product was successfully removed"
+    },
+    "errors": {
+      "Unprocessable Entity": "Product is in the menu"
+    }
+  },
+  "modifiers": {
+    "modifiers": "Modifier",
+    "titles": {
+      "list": "Modifiers",
+      "edit": "Edit modifier",
+      "create": "Add modifier"
+    },
+    "fields": {
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "paramCalculationType": "By what property should macros be aggregated",
+      "params": "Macros coefficient",
+      "iiko_id": "IIKO ID",
+      "override_title": "Override title"
+    },
+    "success": {
+      "create": "Modifier was successfully added",
+      "edit": "Modifier was successfully edited",
+      "delete": "Modifier was successfully removed"
+    },
+    "errors": {
+      "Method Not Allowed": "Modifier is in the menu"
+    }
+  },
+  "categories": {
+    "categories": "Categories",
+    "allDay": "All day",
+    "fields": {
+      "id": "Id",
+      "title": "Title",
+      "createdAt": "Created At",
+      "timeLimit": "Available at time"
+    },
+    "titles": {
+      "create": "Add product category",
+      "edit": "Edit product category",
+      "list": "Product categories"
+    },
+    "success": {
+      "create": "Product category was successfully added",
+      "edit": "Product category was successfully edited",
+      "delete": "Product category was successfully removed"
+    },
+    "errors": {
+      "Unprocessable Entity": "Category is in the menu"
+    }
+  },
+  "modifier-categories": {
+    "fields": {
+      "id": "ID",
+      "title": "Title",
+      "override_title": "Override title",
+      "timeLimit": "Available at time"
+    },
+    "titles": {
+      "create": "Add modifier category",
+      "edit": "Edit modifier category",
+      "list": "Modifier categories"
+    },
+    "success": {
+      "create": "Modifier category was successfully added",
+      "edit": "Modifier category was successfully edited",
+      "delete": "Modifier category was successfully removed"
+    },
+    "errors": {
+      "Unprocessable Entity": "Modifier category is in the menu"
+    }
+  },
+  "menu-items": {
+    "menu-items": "Store items",
+    "fields": {
+      "id": "Id",
+      "shop": "Shop",
+      "product": "Product",
+      "price": "Price",
+      "isAvailable": "Is available",
+      "groupModifiers": "Group modifiers",
+      "timeLimit": "Available at time",
+      "modifier_category": "Modifier category",
+      "modifier": "Modifier",
+      "childModifiers": "Child modifiers",
+      "minAmount": "Minimum amount",
+      "maxAmount": "Maximum amount",
+      "defaultAmount": "Default amount",
+      "stockable": "Is it stockable",
+      "stockBalance": "Stock balance",
+      "stockShowOption": "Stock display option",
+      "stockShowOptionValues": {
+        "SHOW_NUMBER": "Show quantity",
+        "SHOW_BOOLEAN": "Show available/unavailable",
+        "HIDE": "Hide"
+      }
+    },
+    "titles": {
+      "create": "Add product to menu",
+      "edit": "Edit product in menu",
+      "list": "Products in menu"
+    },
+    "isAvailable": "Available in menu",
+    "isNotAvailable": "Not available in menu",
+    "isStockable": "Stockable",
+    "isNotStockable": "Not stockable",
+    "selectProduct": "Select product",
+    "selectShop": "Select shop",
+    "selectModifier": "Select modifier",
+    "selectModifierCategory": "Select modifier category",
+    "selectShops": "Select shops",
+    "selectProducts": "Select products",
+    "addChildModifier": "Add a child modifier",
+    "addModifierGroup": "Add a group of modifiers",
+    "success": {
+      "create": "Product in menu was successfully added",
+      "edit": "Product in menu was successfully edited",
+      "delete": "Product in menu was successfully removed"
+    },
+    "errors": {
+      "modifiersShouldBeUnique": "Modifiers should be unique",
+      "minMoreThanMax": "The minimum amount cannot exceed the maximum",
+      "defaultMoreThanMax": "The default amount cannot exceed the maximum quantity",
+      "defaultLessThanMin": "The default amount cannot be less than the minimum quantity",
+      "atLeastOneModifier": "Specify at least one child modifier",
+      "uniqueModifierCategories": "Each modifier group should have a unique modifier category",
+      "422": "There is already such a product in the menu in this shop",
+      "500": "Something went wrong. Try again later..."
+    },
+    "any": "Any",
+    "available": "Available",
+    "notAvailable": "Not available"
+  },
+  "menu-modifier-items": {
+    "menu-modifier-items": "Menu modifier",
+    "titles": {
+      "list": "Menu modifiers",
+      "edit": "Edit menu modifier",
+      "create": "Add menu modifier"
+    },
+    "fields": {
+      "id": "ID",
+      "modifier": "Modifier",
+      "shop": "Shop",
+      "price": "Price",
+      "iiko_organization_id": "IIKO organization ID",
+      "iiko_product_id": "IIKO product ID",
+      "isAvailable": "Availability",
+      "stockable": "Is stockable",
+      "stockShowOption": "Stocks",
+      "stockShowOptionValues": {
+        "SHOW_NUMBER": "Show quantity",
+        "SHOW_BOOLEAN": "Show available/not available",
+        "HIDE": "Do not display"
+      },
+      "stockBalance": "Remaining stock"
+    },
+    "isAvailable": "Available",
+    "isNotAvailable": "Not available",
+    "isStockable": "Stockable",
+    "isNotStockable": "Not stockable",
+    "searchByModifier": "Search by modifier",
+    "selectModifier": "Select modifier",
+    "selectShop": "Select shop",
+    "selectModifiers": "Select modifiers",
+    "selectShops": "Select shops",
+    "success": {
+      "create": "Modifier in menu was successfully added",
+      "edit": "Modifier in menu was successfully edited",
+      "delete": "Modifier in menu was successfully removed"
+    },
+    "errors": {
+      "422": "There is already such a modifier in the menu in this shop",
+      "500": "Something went wrong. Try again later..."
+    }
+  },
+  "stock-logs": {
+    "stock-logs": "Stock logs",
+    "fields": {
+      "createdAt": "Date",
+      "action": "Action",
+      "value": "Value",
+      "orderId": "Order",
+      "actionValues": {
+        "USER_ADD": "Admin add",
+        "USER_SUBTRACT": "Admin subtract",
+        "ORDER_RESERVE": "Order reserve",
+        "ORDER_PAY": "Order pay",
+        "ORDER_CANCEL": "Order cancel",
+        "EXTERNAL_SYNC": "External sync"
+      },
+      "actionValuesForm": {
+        "USER_ADD": "Add",
+        "USER_SUBTRACT": "Subtract"
+      }
+    },
+    "titles": {
+      "create": "Add stock log record",
+      "edit": "Edit stock log record",
+      "list": "Stock logs",
+      "show": "Stock log record"
+    },
+    "addRecord": "Add record",
+    "selectActions": "Select actions",
+    "enterOrder": "Enter order"
+  },
+  "custom-screens": {
+    "fields": {
+      "id": "ID",
+      "title": "Title",
+      "rank": "Order",
+      "content": "Content"
+    },
+    "titles": {
+      "create": "Add service screen",
+      "edit": "Edit service screen",
+      "list": "Service screens",
+      "show": "Service screen"
+    },
+    "success": {
+      "create": "Service screen was successfully added",
+      "edit": "Service screen was successfully edited",
+      "delete": "Service screen was successfully removed"
+    }
+  },
+  "faqs": {
+    "fields": {
+      "id": "ID",
+      "title": "Title",
+      "rank": "Order",
+      "content": "Content"
+    },
+    "titles": {
+      "create": "Add question",
+      "edit": "Edit question",
+      "list": "FAQ",
+      "show": "Question"
+    },
+    "success": {
+      "create": "Question was successfully added",
+      "edit": "Question was successfully edited",
+      "delete": "Question was successfully removed"
+    }
+  },
+  "shops": {
+    "taxTypeEnums": {
+      "NO_NDS": "No NDS",
+      "ND_S0": "NDS at 0% rate",
+      "NDS_10": "NDS at 10% rate",
+      "NDS_10_110": "NDS at calculated rate 10/110",
+      "NDS_20": "NDS at 20% rate",
+      "NDS_20_120": "NDS at calculated rate 20/120"
+    },
+    "fields": {
+      "id": "ID",
+      "title": "Title",
+      "address": "Address",
+      "city": "City",
+      "coordinates": "Store Coordinates",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "useCutlery": "Use Cutlery",
+      "useStockBalance": "Use stock balance",
+      "useBonuses": "Use Bonuses",
+      "usePromoCodes": "Use Promo Codes",
+      "workTimeTitle": "Working Hours",
+      "timezone": "Timezone",
+      "minOrderDelayInMinutes": "Minimum Delivery Time in Minutes",
+      "firstOrderDelayInMinutes": "Minimum First Delivery Time in Minutes",
+      "asapStepInMinutes": "As Soon As Possible Step in Minutes",
+      "enabled": "Activity Status",
+      "phoneForClients": "Phone Number for Clients",
+      "allowedOrderTypes": "Order Type",
+      "allowedPaymentTypes": "Payment Type",
+      "workTime": "Schedule",
+      "workingTime": "Working Time",
+      "aroundTheClock": "All Day",
+      "weekend": "Weekend",
+      "time": "Time",
+      "start": "Start",
+      "finish": "Finish",
+      "day": "Day",
+      "invoiceTemplateUrl": "Invoice Template for Legal Entities",
+      "taxType": "NDS",
+      "supplierInfo": {
+        "title": "Supplier Information",
+        "name": "Name",
+        "phone": "Phone Number",
+        "inn": "Tax Identification Number"
+      }
+    },
+    "titles": {
+      "create": "Add shop",
+      "edit": "Edit shop",
+      "list": "Shops"
+    },
+    "searchByTitleOrAddress": "Search by title or address",
+    "selectCities": "Select cities",
+    "status": {
+      "all": "All",
+      "on": "On",
+      "off": "Off"
+    },
+    "true": "On",
+    "false": "Off",
+    "success": {
+      "create": "Shop was successfully added",
+      "edit": "Shop was successfully edited"
+    },
+    "errors": {
+      "invoiceTemplateRequired": "It is required to specify a template for the account of a legal entity",
+      "innInvalidPattern": "TIN must contain 10-12 digits"
+    },
+    "invoiceHint": "It is possible to upload only xlsx files, xls files are not suitable",
+    "uploadHint": "Drag the new invoice template in xlsx format into this area",
+    "addDay": "Add day",
+    "time": {
+      "default": "Default",
+      "allDay": "All day",
+      "dayOff": "Day off"
+    }
+  },
+  "global-setting": {
+    "title": "Global Settings",
+    "broadcastOfferAcceptedRequired": "Broadcast offer accepted is required",
+    "useBroadcastOfferAccept": "Show broadcast offer accept",
+    "policyUrl": "Link to policy\n",
+    "termUrl": "Link to terms",
+    "useBonuses": "Use bonuses",
+    "useFaq": "Show FAQ",
+    "save": "Save",
+    "requiredField": "This field is required",
+    "true": "True",
+    "false": "False",
+    "invoiceTemplateUrl": "Invoice template",
+    "success": {
+      "edit": "Global settings were successfully edited"
+    }
+  },
+  "toolbar": {
+    "underline": "Underline",
+    "removeUnderline": "Remove underline"
+  },
+  "errors": {
+    "imageUpload": "Error while uploading image"
+  }
+}

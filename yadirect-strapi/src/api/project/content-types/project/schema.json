@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "Project",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "alerts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::alert.alert",
+      "inversedBy": "projects"
+    },
+    "yandexDirectAccounts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::yandex-direct-account.yandex-direct-account",
+      "mappedBy": "project"
+    },
+    "name": {
+      "type": "string"
+    },
+    "organization": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::organization.organization",
+      "inversedBy": "projects"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "projects"
+    }
+  }
+}

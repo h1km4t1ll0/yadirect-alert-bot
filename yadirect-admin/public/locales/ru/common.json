@@ -1,0 +1,389 @@
+{
+  "app": {
+    "dashboard": "Дашборд",
+    "orders": "Заказы",
+    "users": "Клиенты",
+    "clients": "Клиенты",
+    "account-remove-requests": "Запросы на удаление",
+    "admins": "Администраторы",
+    "menu": "Витрина",
+    "products": "Товары",
+    "modifiers": "Модификаторы",
+    "categories": "Категории товаров",
+    "modifier-categories": "Категории модификаторов",
+    "menu-items": "Товары на витрине",
+    "menu-modifier-items": "Модификаторы на витрине",
+    "content": "Контент",
+    "custom-screens": "Служебные экраны",
+    "faqs": "FAQ",
+    "settings": "Настройки",
+    "shops": "Магазины",
+    "global-setting": "Глобальные настройки"
+  },
+  "documentTitle": {
+    "default": "refine",
+    "suffix": " | refine",
+    "statistics": {
+      "list": "Дашборд | refine"
+    },
+    "orders": {
+      "list": "Заказы | refine",
+      "edit": "#{{id}} Редактирование заказа | refine"
+    },
+    "products": {
+      "list": "Товары | refine",
+      "edit": "#{{id}} Редактирование товара | refine",
+      "create": "Добавление товара | refine"
+    },
+    "modifiers": {
+      "list": "Модификаторы | refine",
+      "edit": "#{{id}} Редактирование модификатора | refine",
+      "create": "Добавление модификатора | refine"
+    },
+    "categories": {
+      "list": "Категории товаров | refine",
+      "edit": "#{{id}} Редактирование категории товаров | refine",
+      "create": "Добавление категории товаров | refine"
+    },
+    "modifier-categories": {
+      "list": "Категории модификаторов | refine",
+      "edit": "#{{id}} Редактирование категории модифакторов | refine",
+      "create": "Добавление категории модификаторов | refine"
+    },
+    "menu-items": {
+      "list": "Товары на витрине | refine",
+      "edit": "#{{id}} Редактирование товара на витрине | refine",
+      "create": "Добавление товара на витрину | refine"
+    },
+    "menu-modifier-items": {
+      "list": "Модификаторы на витрине | refine",
+      "edit": "#{{id}} Редактирование модификатора на витрине | refine",
+      "create": "Добавление модификатора на витрину | refine"
+    },
+    "custom-screens": {
+      "list": "Служебные экраны | refine",
+      "edit": "#{{id}} Редактирование служебного экрана | refine",
+      "create": "Добавление служебного экрана | refine",
+      "show": "#{{id}} Служебный экран | refine"
+    },
+    "faqs": {
+      "list": "FAQ | refine",
+      "edit": "#{{id}} Редактирование вопроса | refine",
+      "create": "Добавление вопроса | refine",
+      "show": "#{{id}} Частый вопрос | refine"
+    },
+    "clients": {
+      "list": "Клиенты | refine",
+      "show": "#{{id}} Клиент | refine"
+    },
+    "account-remove-requests": {
+      "list": "Запросы на удаление аккаунта | refine"
+    },
+    "admins": {
+      "list": "Администраторы | refine",
+      "edit": "#{{id}} Редактирование администратора | refine",
+      "create": "Добавление администратора | refine",
+      "show": "#{{id}} Администратор | refine"
+    },
+    "shops": {
+      "list": "Магазины | refine",
+      "edit": "#{{id}} Редактирование магазина | refine",
+      "create": "Добавление магазина | refine"
+    },
+    "global-setting": {
+      "list": "Глобальные настройки | refine"
+    }
+  },
+  "pages": {
+    "login": {
+      "title": "Войти в аккаунт",
+      "signin": "Войти в систему",
+      "signup": "Зарегистрироваться",
+      "divider": "или",
+      "fields": {
+        "email": "Почта",
+        "password": "Пароль"
+      },
+      "errors": {
+        "validEmail": "Неправильная электронная почта",
+        "requiredPassword": "Необходимо ввести пароль",
+        "requiredEmail": "Необходимо ввести электронную почту"
+      },
+      "buttons": {
+        "submit": "Войти",
+        "forgotPassword": "Забыли пароль?",
+        "noAccount": "Нет аккаунта?",
+        "rememberMe": "Запомнить меня"
+      }
+    },
+    "forgotPassword": {
+      "title": "Забыли пароль?",
+      "fields": {
+        "email": "Почта"
+      },
+      "errors": {
+        "validEmail": "Неправильная электронная почта"
+      },
+      "buttons": {
+        "submit": "Отправить письмо"
+      }
+    },
+    "register": {
+      "title": "Войти в Ваш аккаунт",
+      "fields": {
+        "email": "Почта",
+        "password": "Пароль"
+      },
+      "errors": {
+        "validEmail": "Неправильная электронная почта"
+      },
+      "buttons": {
+        "submit": "Зарегистрироваться",
+        "haveAccount": "Уже есть аккаунт?"
+      }
+    },
+    "updatePassword": {
+      "title": "Обновить пароль",
+      "fields": {
+        "password": "Новый пароль",
+        "confirmPassword": "Подтвердить новый пароль"
+      },
+      "errors": {
+        "confirmPasswordNotMatch": "Пароли не совпадают"
+      },
+      "buttons": {
+        "submit": "Обновить"
+      }
+    },
+    "error": {
+      "info": "Возможно, вы забыли добавить компонент {{action}} в {{resource}} ресурс.",
+      "404": "Извините, данная страница недоступна.",
+      "resource404": "Вы уверены, что создали ресурс {{resource}}.",
+      "backHome": "На главную"
+    }
+  },
+  "actions": {
+    "list": "Список",
+    "create": "Создать",
+    "edit": "Изменить",
+    "show": "Показать"
+  },
+  "table": {
+    "actions": "Действия",
+    "total": "Всего",
+    "search": {
+      "phone": "Поиск по номеру телефона",
+      "name": "Поиск по имени",
+      "title": "Поиск по названию",
+      "nameOrPhone": "Поиск по имени или телефону",
+      "id": "Поиск по ID",
+      "order": "Поиск по номеру заказа",
+      "username": "Поиск по имени пользователя",
+      "address": "Поиск по адресу"
+    }
+  },
+  "buttons": {
+    "create": "Создать",
+    "save": "Сохранить",
+    "logout": "Выйти",
+    "delete": "Удалить",
+    "edit": "Изменить",
+    "cancel": "Отмена",
+    "confirm": "Вы уверены?",
+    "filter": "Фильтр",
+    "clear": "Очистить",
+    "refresh": "Обновить",
+    "show": "Показать",
+    "undo": "Назад",
+    "import": "Импортировать",
+    "clone": "Клонировать",
+    "notAccessTitle": "У Вас не прав для доступа",
+    "true": "Включен",
+    "false": "Отключен",
+    "on": "Вкл",
+    "off": "Выкл",
+    "yes": "Да",
+    "no": "Нет"
+  },
+  "success": "Успешно",
+  "error": "Ошибка",
+  "warnWhenUnsavedChanges": "Вы уверены что хотите выйти? Есть несохраненные изменения.",
+  "dragImage": "Перетащите новое изображение в эту область",
+  "notifications": {
+    "success": "Успешно",
+    "error": "Ошибка (status code: {{statusCode}})",
+    "undoable": "У Вас есть {{seconds}} секунд чтобы вернуться",
+    "createSuccess": "Успешно создано!",
+    "createError": "Ошибка при создании (status code: {{statusCode}})",
+    "deleteSuccess": "Успешно удалено!",
+    "deleteError": "Ошибка при удалении (status code: {{statusCode}})",
+    "editSuccess": "Успешно изменено!",
+    "editError": "Ошибка при редактировании {{resource}} (status code: {{statusCode}})",
+    "importProgress": "Импортирование: {{processed}}/{{total}}"
+  },
+  "loading": "Загрузка",
+
+  "alerts": {
+    "titles": {
+      "show": "Уведомление",
+      "list": "Уведомления",
+      "create": "Создать уведомление",
+      "edit": "Редактировать уведомление"
+    },
+    "success": {
+      "create": "Уведомление успешно создано!",
+      "edit": "Данные уведомления успешно обновлены",
+      "delete": "Уведомление успешно удалено"
+    },
+    "buttons": {
+      "refresh": "Обновить"
+    },
+    "yes": "Да",
+    "no": "Нет"
+  },
+
+  "chats": {
+    "titles": {
+      "show": "Чат",
+      "list": "Чаты",
+      "create": "Создать чат",
+      "edit": "Редактировать чат"
+    },
+    "success": {
+      "create": "Чат успешно создан!",
+      "edit": "Данные чата успешно обновлены",
+      "delete": "Чат успешно удален"
+    },
+    "buttons": {
+      "refresh": "Обновить"
+    },
+    "yes": "Да",
+    "no": "Нет"
+  },
+
+  "projects": {
+    "titles": {
+      "show": "Проект",
+      "list": "Проекты",
+      "create": "Создать проект",
+      "edit": "Редактировать проект"
+    },
+    "success": {
+      "create": "Проект успешно создан!",
+      "edit": "Данные проекта успешно обновлены",
+      "delete": "Проект успешно удален"
+    },
+    "buttons": {
+      "refresh": "Обновить"
+    },
+    "yes": "Да",
+    "no": "Нет"
+  },
+
+  "yandex-direct-accounts": {
+    "titles": {
+      "show": "Аккаунт Яндекс.Директ",
+      "list": "Аккаунты Яндекс.Директ",
+      "create": "Создать аккаунт Яндекс.Директ",
+      "edit": "Редактировать аккаунт Яндекс.Директ"
+    },
+    "success": {
+      "create": "Аккаунт Яндекс.Директ успешно создан!",
+      "edit": "Данные Аккаунта Яндекс.Директ успешно обновлены",
+      "delete": "Аккаунт Яндекс.Директ успешно удален"
+    },
+    "buttons": {
+      "refresh": "Обновить"
+    },
+    "yes": "Да",
+    "no": "Нет"
+  },
+
+  "frontmatterEditor": {
+    "title": "Редактировать документ вступительную часть",
+    "key": "Ключ",
+    "value": "Значение",
+    "addEntry": "Добавить вход"
+  },
+  "dialogControls": {
+    "save": "Сохранить",
+    "cancel": "Отмена"
+  },
+  "uploadImage": {
+    "uploadInstructions": "Загрузить изображение с устройства:",
+    "addViaUrlInstructions": "Или добавить изображение из ссылки:",
+    "autoCompletePlaceholder": "Выберите или вставьте путь до изображения",
+    "alt": "Альтернативное:",
+    "title": "Название:"
+  },
+  "imageEditor": {
+    "editImage": "Редактировать изображение"
+  },
+  "createLink": {
+    "url": "Ссылка",
+    "urlPlaceholder": "Выбрать или вставить ссылку",
+    "title": "Название",
+    "saveTooltip": "Установить ссылку",
+    "cancelTooltip": "Отменить изменения"
+  },
+  "linkPreview": {
+    "open": "Открыть {{url}} в новом окне",
+    "edit": "Редактировать ссылку",
+    "copyToClipboard": "Скопировать",
+    "copied": "Скопировано!",
+    "remove": "Удалить ссылку"
+  },
+  "toolbar": {
+    "blockTypes": {
+      "paragraph": "Параграф",
+      "quote": "Цитата",
+      "heading": "Заголовок {{level}}"
+    },
+    "blockTypeSelect": {
+      "selectBlockTypeTooltip": "Выберите тип блока",
+      "placeholder": "Тип блока"
+    },
+    "removeBold": "Убрать жирный",
+    "bold": "Жирный",
+    "removeItalic": "Убрать курсив",
+    "italic": "Курсив",
+    "underline": "Подчеркивание",
+    "removeUnderline": "Убрать подчеркивание",
+    "removeInlineCode": "Убрать форматирование кода",
+    "inlineCode": "Формат встроенного кода",
+    "link": "Создать ссылку",
+    "richText": "Редактирование",
+    "diffMode": "Режим сравнения",
+    "source": "Источник",
+    "admonition": "Вставить предостережение",
+    "codeBlock": "Вставить блок кода",
+    "editFrontmatter": "Редактировать вступительную часть",
+    "insertFrontmatter": "Вставить вступительную часть",
+    "image": "Вставить изображение",
+    "insertSandpack": "Вставить Sandpack",
+    "table": "Вставить таблицу",
+    "thematicBreak": "Вставить тематический разрыв",
+    "bulletedList": "Маркированный список",
+    "numberedList": "Пронумерованный список",
+    "checkList": "Контрольный список",
+    "deleteSandpack": "Убрать этот блок кода",
+    "undo": "Отменить {{shortcut}}",
+    "redo": "Вернуть {{shortcut}}"
+  },
+  "admonitions": {
+    "note": "Примечание",
+    "tip": "Совет",
+    "danger": "Опасно",
+    "info": "Инфо",
+    "caution": "Осторожно",
+    "changeType": "Выберите тип предупреждения",
+    "placeholder": "Тип предупреждения"
+  },
+  "codeBlock": {
+    "language": "Язык кодовых блоков",
+    "selectLanguage": "Выберите язык блока кода"
+  },
+  "errors": {
+    "imageUpload": "Ошибка при загрузке изображения"
+  }
+}

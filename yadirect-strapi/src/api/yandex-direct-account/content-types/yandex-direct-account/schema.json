@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "yandex_direct_accounts",
+  "info": {
+    "singularName": "yandex-direct-account",
+    "pluralName": "yandex-direct-accounts",
+    "displayName": "YandexDirectAccount",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "token": {
+      "type": "string",
+      "required": true
+    },
+    "balance": {
+      "type": "float",
+      "required": false
+    },
+    "isUserNotified": {
+      "type": "boolean",
+      "default": false
+    },
+    "alertBalanceAmount": {
+      "type": "integer",
+      "default": 0
+    },
+    "goals": {
+      "type": "component",
+      "repeatable": true,
+      "component": "yadirect-components.goal"
+    },
+    "project": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::project.project",
+      "inversedBy": "yandexDirectAccounts"
+    },
+    "monthlyBudget": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "monthlyExpenseSumm": {
+      "type": "integer",
+      "min": 0,
+      "default": 0
+    }
+  }
+}

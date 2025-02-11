@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_yadirect_components_goals",
+  "info": {
+    "displayName": "Goal"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "goalId": {
+      "type": "string"
+    }
+  }
+}
