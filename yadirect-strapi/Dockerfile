@@ -13,7 +13,7 @@ COPY ./package.json ./
 COPY ./yarn.lock ./
 RUN yarn install --no-cache --frozen-lockfile
 
-COPY ./apps/mpp-wa-strapi/ /app
+COPY ./ /app
 ENV NODE_ENV production
 
 RUN yarn build
