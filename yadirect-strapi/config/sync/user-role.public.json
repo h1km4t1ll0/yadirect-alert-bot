@@ -1,0 +1,118 @@
+{
+  "name": "Public",
+  "description": "Default role given to unauthenticated user.",
+  "type": "public",
+  "permissions": [
+    {
+      "action": "api::alert.alert.create"
+    },
+    {
+      "action": "api::alert.alert.delete"
+    },
+    {
+      "action": "api::alert.alert.find"
+    },
+    {
+      "action": "api::alert.alert.findOne"
+    },
+    {
+      "action": "api::alert.alert.update"
+    },
+    {
+      "action": "api::bot-controller.bot-controller.processUpdate"
+    },
+    {
+      "action": "api::chat.chat.create"
+    },
+    {
+      "action": "api::chat.chat.delete"
+    },
+    {
+      "action": "api::chat.chat.find"
+    },
+    {
+      "action": "api::chat.chat.findOne"
+    },
+    {
+      "action": "api::chat.chat.update"
+    },
+    {
+      "action": "api::organization.organization.create"
+    },
+    {
+      "action": "api::organization.organization.delete"
+    },
+    {
+      "action": "api::organization.organization.find"
+    },
+    {
+      "action": "api::organization.organization.findOne"
+    },
+    {
+      "action": "api::organization.organization.update"
+    },
+    {
+      "action": "api::project.project.create"
+    },
+    {
+      "action": "api::project.project.delete"
+    },
+    {
+      "action": "api::project.project.find"
+    },
+    {
+      "action": "api::project.project.findOne"
+    },
+    {
+      "action": "api::project.project.update"
+    },
+    {
+      "action": "api::yandex-direct-account.yandex-direct-account.create"
+    },
+    {
+      "action": "api::yandex-direct-account.yandex-direct-account.delete"
+    },
+    {
+      "action": "api::yandex-direct-account.yandex-direct-account.find"
+    },
+    {
+      "action": "api::yandex-direct-account.yandex-direct-account.findOne"
+    },
+    {
+      "action": "api::yandex-direct-account.yandex-direct-account.update"
+    },
+    {
+      "action": "plugin::content-type-builder.components.getComponent"
+    },
+    {
+      "action": "plugin::content-type-builder.components.getComponents"
+    },
+    {
+      "action": "plugin::content-type-builder.content-types.getContentType"
+    },
+    {
+      "action": "plugin::content-type-builder.content-types.getContentTypes"
+    },
+    {
+      "action": "plugin::users-permissions.auth.callback"
+    },
+    {
+      "action": "plugin::users-permissions.auth.connect"
+    },
+    {
+      "action": "plugin::users-permissions.auth.emailConfirmation"
+    },
+    {
+      "action": "plugin::users-permissions.auth.forgotPassword"
+    },
+    {
+      "action": "plugin::users-permissions.auth.register"
+    },
+    {
+      "action": "plugin::users-permissions.auth.resetPassword"
+    },
+    {
+      "action": "plugin::users-permissions.auth.sendEmailConfirmation"
+    }
+  ]
+}

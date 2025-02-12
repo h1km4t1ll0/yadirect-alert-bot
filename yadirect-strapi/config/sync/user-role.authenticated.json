@@ -1,0 +1,79 @@
+{
+  "name": "ContentManager",
+  "description": "Default role given to authenticated user.",
+  "type": "authenticated",
+  "permissions": [
+    {
+      "action": "api::alert.alert.create"
+    },
+    {
+      "action": "api::alert.alert.delete"
+    },
+    {
+      "action": "api::alert.alert.find"
+    },
+    {
+      "action": "api::alert.alert.findOne"
+    },
+    {
+      "action": "api::alert.alert.update"
+    },
+    {
+      "action": "api::chat.chat.create"
+    },
+    {
+      "action": "api::chat.chat.delete"
+    },
+    {
+      "action": "api::chat.chat.find"
+    },
+    {
+      "action": "api::chat.chat.findOne"
+    },
+    {
+      "action": "api::chat.chat.update"
+    },
+    {
+      "action": "api::project.project.create"
+    },
+    {
+      "action": "api::project.project.delete"
+    },
+    {
+      "action": "api::project.project.find"
+    },
+    {
+      "action": "api::project.project.findOne"
+    },
+    {
+      "action": "api::project.project.update"
+    },
+    {
+      "action": "api::yandex-direct-account.yandex-direct-account.create"
+    },
+    {
+      "action": "api::yandex-direct-account.yandex-direct-account.delete"
+    },
+    {
+      "action": "api::yandex-direct-account.yandex-direct-account.find"
+    },
+    {
+      "action": "api::yandex-direct-account.yandex-direct-account.findOne"
+    },
+    {
+      "action": "api::yandex-direct-account.yandex-direct-account.update"
+    },
+    {
+      "action": "plugin::users-permissions.auth.changePassword"
+    },
+    {
+      "action": "plugin::users-permissions.role.find"
+    },
+    {
+      "action": "plugin::users-permissions.user.find"
+    },
+    {
+      "action": "plugin::users-permissions.user.me"
+    }
+  ]
+}

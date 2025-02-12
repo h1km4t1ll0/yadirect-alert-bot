@@ -1,0 +1,269 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::yandex-direct-account.yandex-direct-account",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "name",
+      "defaultSortBy": "name",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "name": {
+        "edit": {
+          "label": "name",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "name",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "token": {
+        "edit": {
+          "label": "token",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "token",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "balance": {
+        "edit": {
+          "label": "balance",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "balance",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "isUserNotified": {
+        "edit": {
+          "label": "isUserNotified",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "isUserNotified",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "alertBalanceAmount": {
+        "edit": {
+          "label": "alertBalanceAmount",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "alertBalanceAmount",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "goals": {
+        "edit": {
+          "label": "goals",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "goals",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "project": {
+        "edit": {
+          "label": "project",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "project",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "monthlyBudget": {
+        "edit": {
+          "label": "monthlyBudget",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "monthlyBudget",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "monthlyExpenseSumm": {
+        "edit": {
+          "label": "monthlyExpenseSumm",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "monthlyExpenseSumm",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdBy": {
+        "edit": {
+          "label": "createdBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "createdBy",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedBy": {
+        "edit": {
+          "label": "updatedBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "updatedBy",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "name",
+        "token",
+        "balance"
+      ],
+      "edit": [
+        [
+          {
+            "name": "name",
+            "size": 6
+          },
+          {
+            "name": "token",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "balance",
+            "size": 4
+          },
+          {
+            "name": "isUserNotified",
+            "size": 4
+          },
+          {
+            "name": "alertBalanceAmount",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "goals",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "project",
+            "size": 6
+          },
+          {
+            "name": "monthlyBudget",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "monthlyExpenseSumm",
+            "size": 4
+          }
+        ]
+      ]
+    },
+    "uid": "api::yandex-direct-account.yandex-direct-account"
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}
