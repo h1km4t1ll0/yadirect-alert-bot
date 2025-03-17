@@ -56,7 +56,7 @@ def every_day_alert():
                             account.save()
 
                             planned_consumption_text = (
-                                f'Плановый расход: <b>{planned_consumption_value}</b>\n'
+                                f'Плановый расход: <b>{format_number(planned_consumption_value)}</b>\n'
                                 f'Сумма расходов: <b>{((account.monthly_summ / account.monthly_budget) * 100):.0f}%</b>\n\n'
                             )
 
