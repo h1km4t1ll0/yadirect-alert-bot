@@ -8,7 +8,7 @@ import {Alert} from "@app/alerts/types";
 import ChatForm from "@components/forms/chat";
 
 export default function ChatCreate() {
-  const { formProps, saveButtonProps, onFinish } = useForm<Alert>({});
+  const { form, formProps, saveButtonProps, onFinish } = useForm<Alert>({});
 
   const handleFinish = useCallback(async (value: any) => {
     await onFinish({
@@ -19,8 +19,8 @@ export default function ChatCreate() {
 
   return (
     <Create saveButtonProps={saveButtonProps}>
-      <Form {...formProps} onFinish={handleFinish} layout="vertical">
-        <ChatForm />
+      <Form {...formProps} form={form} onFinish={handleFinish} layout="vertical">
+        <ChatForm form={form} />
       </Form>
     </Create>
   );
