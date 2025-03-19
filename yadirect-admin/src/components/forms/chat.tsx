@@ -1,10 +1,9 @@
-import {Button, Card, Col, Form, FormInstance, Input, Row, Space} from "antd";
+import {Button, Card, Col, Form, FormInstance, Input, Row, Space, message} from "antd";
 
 import CustomSelect from "@components/custom/custom-select";
-import {CSSProperties, FC, useCallback} from "react";
-import axios from "axios";
+import {CSSProperties, FC, useCallback, useState} from "react";
 import {API_URL} from "@utility/constants";
-import {useNotification} from "@refinedev/core";
+import {axiosInstance} from "@utility/axios-instance";
 
 const s: { [key: string]: CSSProperties } = {
   row: {
@@ -17,33 +16,31 @@ const s: { [key: string]: CSSProperties } = {
 };
 
 const ChatForm: FC<{ form: FormInstance }> = ({form}) => {
-  form.getFieldsValue()
+  const [messageApi, contextHolder] = message.useMessage();
+  const [loading, setLoading] = useState<boolean>(false);
+  const chatIdData = Form.useWatch('chatId', form);
 
-  const {open} = useNotification();
+  const sendTestMessage = useCallback(async () => {
+    setLoading(true);
 
-  const sendTestMessage = useCallback(
-    async () => {
-      const response = await axios.get(`${API_URL}/api/sync-with-google?chatId=${form.getFieldValue('chatId') ?? null}`);
+    try {
+      const response = await axiosInstance.get(`${API_URL}/api/send-test-alert?chatId=${chatIdData}`);
 
-      if (open) {
-        if (response.status == 200) {
-          open({
-            type: "success",
-            message: response.data.message
-          })
-        } else {
-          open({
-            type: "error",
-            message: response.data.message
-          })
-        }
+      if (response.data.success) {
+        messageApi.success('Уведомление отправлено!', 7);
+      } else {
+        messageApi.error(`Ошибка при отправке уведомления! ${response.data?.error ?? ''}`, 7);
       }
-    },
-    [form]
-  );
+    } catch (e) {
+      console.log(e);
+      messageApi.error(`Произошла непредвиденная ошибка при отправке уведомления!`);
+    }
+    setLoading(false);
+  }, [chatIdData]);
 
   return (
     <Space direction='vertical' size={5} style={{width: '100%'}}>
+      {contextHolder}
       <Row gutter={32} style={s.row}>
         <Col md={12} xs={24}>
           <Card style={s.card} title="">
@@ -61,6 +58,14 @@ const ChatForm: FC<{ form: FormInstance }> = ({form}) => {
             >
               <Input/>
             </Form.Item>
+            <Button
+              type="primary"
+              onClick={sendTestMessage}
+              loading={loading}
+              disabled={loading || !chatIdData}
+            >
+              Проверить работу уведомления
+            </Button>
           </Card>
         </Col>
         <Col md={12} xs={24}>
@@ -75,9 +80,6 @@ const ChatForm: FC<{ form: FormInstance }> = ({form}) => {
           </Card>
         </Col>
       </Row>
-      <Button type="primary" onClick={sendTestMessage}>
-        Проверить
-      </Button>
     </Space>
   );
 };

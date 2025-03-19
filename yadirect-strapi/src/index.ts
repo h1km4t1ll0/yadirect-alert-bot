@@ -22,10 +22,10 @@ export default {
    */
   async bootstrap({ strapi }: {strapi: Strapi}) {
     const botToken = strapi.config.get('external.telegramBotProperties.telegramBotToken', '');
-    // strapi.bot = new TelegramBot(
-    //   botToken,
-    //   { polling: strapi.config.get('external.telegramBotProperties.longPoll', false) },
-    // );
+    strapi.bot = new TelegramBot(
+      botToken,
+      { polling: false },
+    );
     //
     // await strapi.bot.deleteWebHook()
     //

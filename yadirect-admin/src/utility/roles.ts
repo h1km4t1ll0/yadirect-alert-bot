@@ -32,6 +32,10 @@ export type IUser = {
   email: string;
   avatar: string;
   phone: string;
+  fullname: string;
+  organization?: {
+    name: string;
+  };
   role: {
     id: number;
     name: Roles;

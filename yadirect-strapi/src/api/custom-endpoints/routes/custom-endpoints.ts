@@ -2,8 +2,8 @@ export default {
     routes: [
         {
             method: 'GET',
-            path: '/sync-with-google',
-            handler: 'custom-endpoints.syncWithGoogle',
+            path: '/send-test-alert',
+            handler: 'custom-endpoints.sendTestAlert',
         },
     ],
 };

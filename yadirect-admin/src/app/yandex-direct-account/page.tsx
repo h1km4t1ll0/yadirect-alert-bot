@@ -1,12 +1,22 @@
 "use client";
 
-import {DeleteButton, EditButton, List, ShowButton, useTable,} from "@refinedev/antd";
-import {Button, Popover, Space, Table, Typography} from "antd";
+import {
+  CreateButton,
+  DeleteButton,
+  EditButton, FilterDropdown,
+  getDefaultSortOrder,
+  List,
+  ShowButton, useSelect,
+  useTable,
+} from "@refinedev/antd";
+import {Button, Input, InputNumber, Popover, Select, Space, Table, Typography} from "antd";
 import {Goal, YandexDirectAccount} from "@app/yandex-direct-account/types";
 import {yandexDirectAccountQuery} from "@app/yandex-direct-account/query";
-import {CSSProperties, useState} from "react";
+import {CSSProperties, useCallback, useEffect, useState} from "react";
 import Link from "next/link";
-import type {BaseRecord} from "@refinedev/core";
+import {BaseRecord, getDefaultFilter} from "@refinedev/core";
+import {SearchOutlined} from "@ant-design/icons";
+import dayjs from "dayjs";
 
 function formatNumber(number: number, delimiter: string = ' ') {
   let numberStr = Math.floor(number).toString();
@@ -19,7 +29,25 @@ function formatNumber(number: number, delimiter: string = ' ') {
 }
 
 export default function YandexDirectAccountList() {
-  const {tableProps, filters} = useTable<YandexDirectAccount[]>({
+  const [style, setStyle] = useState<{[index: number]: CSSProperties}>({});
+  const [buttonText, setButtonText] = useState<{[index: number]: string}>({});
+  const [searchValue, setSearchValue] = useState<string>('');
+
+  const { selectProps: projectSelectProps } =
+    useSelect({
+      optionLabel: "name",
+      optionValue: "id",
+      resource: 'projects',
+      meta: {
+        fields: ['id', 'name']
+      }
+      // TODO: фильтровать по организации
+      // filters: [
+      //
+      // ],
+    });
+
+  const {tableProps, filters, setFilters, sorters} = useTable<YandexDirectAccount[]>({
     syncWithLocation: true,
     sorters: {
       initial: [
@@ -30,22 +58,103 @@ export default function YandexDirectAccountList() {
       ],
     },
     filters: {
+      initial: [
+        {
+          field: 'name',
+          operator: 'contains',
+          value: '',
+        },
+        {
+          field: 'alerts',
+          operator: 'in',
+          value: [],
+        },
+      ],
+      // TODO: дописать фильтрацию по организации
       permanent: [],
     },
     meta: yandexDirectAccountQuery,
   });
 
-  const [style, setStyle] = useState<{[index: number]: CSSProperties}>({});
-  const [buttonText, setButtonText] = useState<{[index: number]: string}>({});
+  const onSearch = useCallback((value: string) => {
+    if (value) {
+      setFilters([{
+        operator: 'or',
+        value: [
+          { field: "name", operator: "contains", value },
+          { field: "id", operator: "contains", value },
+          { field: "project.name", operator: "contains", value },
+          { field: "goals.name", operator: "contains", value },
+        ]
+      }, ...filters], "replace");
+    } else {
+      setFilters(filters.filter((filter) => filter.operator !== 'or'), "replace");
+    }
+  }, [filters, setFilters]);
+
+  useEffect(() => {
+    setSearchValue(filters.filter((filter) => filter.operator === 'or')?.[0]?.value?.[0]?.value);
+  }, []);
 
   return (
-    <List>
+    <List
+      headerProps={{
+        title: (
+          <div style={{display: 'flex', alignItems: 'center'}}>
+            <Typography.Title level={4} style={{margin: 0, marginRight: 16}}>
+              Аккаунты Яндекс.Директ
+            </Typography.Title>
+            <Input.Search
+              placeholder="Поиск"
+              onSearch={onSearch}
+              style={{width: 300}}
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              allowClear
+              enterButton={<SearchOutlined/>}
+            />
+          </div>
+        ),
+        extra: (
+          <Space size="middle">
+            <CreateButton>Создать</CreateButton>
+          </Space>
+        ),
+      }}
+    >
       <Table
         {...tableProps} rowKey="id"
         scroll={{ x: 'max-content' }}
       >
-        <Table.Column dataIndex="id" title={"ID"} fixed="left"/>
-        <Table.Column dataIndex="name" title={"Название аккаунта"} fixed="left"/>
+        <Table.Column
+          dataIndex="id"
+          title={"ID"}
+          fixed="left"
+          sorter
+          defaultSortOrder={getDefaultSortOrder('id', sorters)}
+        />
+        <Table.Column
+          dataIndex="createdAt"
+          title={"Дата создания"}
+          sorter={{ multiple: 4 }}
+          defaultSortOrder={getDefaultSortOrder('createdAt', sorters)}
+          render={(value) => dayjs(value).format('DD.MM.YYYY HH:MM')}
+        />
+        <Table.Column
+          title={"Название аккаунта"}
+          dataIndex="name"
+          fixed="left"
+          sorter={{ multiple: 5 }}
+          defaultSortOrder={getDefaultSortOrder('name', sorters)}
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Input placeholder={'Поиск'} />
+            </FilterDropdown>
+          )}
+          defaultFilteredValue={
+            getDefaultFilter('name', filters, 'contains')
+          }
+        />
         <Table.Column
           dataIndex="alertBalanceAmount" title={"Порог для уведомления"}
           render={(value, _, __) => {
@@ -54,10 +163,20 @@ export default function YandexDirectAccountList() {
             }
             return `${formatNumber(value)}₽`
           }}
+          sorter={{ multiple: 3 }}
+          defaultSortOrder={getDefaultSortOrder('alertBalanceAmount', sorters)}
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <InputNumber style={{width: 180}} placeholder={'Поиск'} />
+            </FilterDropdown>
+          )}
+          defaultFilteredValue={
+            getDefaultFilter('alertBalanceAmount', filters, 'eq')
+          }
         />
         <Table.Column
           dataIndex="project" title={"Проект"}
-          render={(value, record, index) => {
+          render={(value) => {
             if (value) {
               return (
                 <Link
@@ -70,10 +189,30 @@ export default function YandexDirectAccountList() {
             }
             return '-';
           }}
+          defaultFilteredValue={
+            getDefaultFilter('project', filters, 'in')
+          }
+          filterDropdown={(props) => (
+            <FilterDropdown
+              {...props}
+              mapValue={(key) => {
+                if (key === undefined) return []
+                return key;
+              }}
+            >
+              <Select
+                {...projectSelectProps}
+                mode="multiple"
+                style={{ width: "200px" }}
+                placeholder="Выберите проект"
+              />
+            </FilterDropdown>
+          )}
         />
         <Table.Column
-          dataIndex="goals" title={"Цели"}
-          render={(value: Goal[], record, index) => (
+          dataIndex="goals"
+          title={"Цели"}
+          render={(value: Goal[]) => (
             <Popover
               content={
                 <div style={{ maxHeight: '150px', overflowY: 'auto' }}>
@@ -113,6 +252,16 @@ export default function YandexDirectAccountList() {
             }
             return `${formatNumber(value)}₽`
           }}
+          sorter={{ multiple: 2 }}
+          defaultSortOrder={getDefaultSortOrder('monthlyBudget', sorters)}
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <InputNumber style={{width: 180}} placeholder={'Поиск'} />
+            </FilterDropdown>
+          )}
+          defaultFilteredValue={
+            getDefaultFilter('monthlyBudget', filters, 'eq')
+          }
         />
         <Table.Column
           dataIndex="monthlyExpenseSumm" title={"Сумма расходов"}
@@ -123,6 +272,16 @@ export default function YandexDirectAccountList() {
 
             return `${formatNumber(value)}₽ (${((record.monthlyExpenseSumm / record.monthlyBudget) * 100).toFixed(0)}%)`;
           }}
+          sorter={{ multiple: 1 }}
+          defaultSortOrder={getDefaultSortOrder('monthlyExpenseSumm', sorters)}
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <InputNumber style={{width: 180}} placeholder={'Поиск'} />
+            </FilterDropdown>
+          )}
+          defaultFilteredValue={
+            getDefaultFilter('monthlyExpenseSumm', filters, 'eq')
+          }
         />
         <Table.Column
           dataIndex="token" title={"Токен Яндекс.Директ"}

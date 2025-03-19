@@ -1,7 +1,7 @@
 FROM node:18.18.2
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
-RUN cp /usr/share/zoneinfo/Asia/Dubai /etc/localtime && echo "Asia/Dubai" > /etc/timezone
+RUN cp /usr/share/zoneinfo/Asia/Dubai /etc/localtime && echo "Europe/Moscow" > /etc/timezone
 RUN dpkg-reconfigure --frontend noninteractive tzdata
 #RUN apt-get update && \
 #    apt-get install -y nano openssl curl

@@ -1,17 +1,28 @@
 export default {
-  syncWithGoogle: async (ctx, next) => {
-    try {
-      const chatId = ctx.query.chatId;
+  sendTestAlert: async (ctx, next) => {
+    const chatId = ctx.query?.chatId;
 
-      await strapi.bot.sendMessage(ctx.query.chatId, "Работаем!");
-      ctx.send({
-        message: 'Успешно!'
+    try {
+      await strapi.bot.sendMessage(chatId, "Тестовое уведомление для проверки работы бота WebGib");
+
+      return ctx.send({
+        success: true,
+        error: null,
       }, 200);
     } catch (e) {
-      console.error(`Ошибка! ${e}`);
-      ctx.send({
-        message: e.toString(),
-      }, 500);
+      console.error(`[SEND TEST ALERT ERROR] ${JSON.stringify(e)}`);
+
+      if (e?.message?.includes('chat not found')) {
+        return ctx.send({
+          success: false,
+          error: `Бота нет в чате!`,
+        }, 200);
+      }
+
+      return ctx.send({
+        success: false,
+        error: null,
+      }, 200);
     }
   },
 };

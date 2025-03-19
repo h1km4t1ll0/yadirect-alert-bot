@@ -12,7 +12,8 @@ import { useLocale, useTranslations } from "next-intl";
 import { setUserLocale } from "@i18n";
 import {AntdRegistry} from "@ant-design/nextjs-registry";
 import {authProvider} from "@providers/auth-provider/auth-provider";
-import {BellOutlined, CommentOutlined, UsergroupAddOutlined} from "@ant-design/icons";
+import {BellOutlined, CommentOutlined, QuestionCircleOutlined, UsergroupAddOutlined} from "@ant-design/icons";
+import SupportLogo from "@components/layout/SupportIcon";
 
 type Props = {
   themeMode?: string;
@@ -83,6 +84,17 @@ export const RefineContext = ({
                   meta: {
                     label: 'Уведомления',
                     icon: <BellOutlined/>,
+                  },
+                },
+                {
+                  name: 'alertsуу',
+                  list: '/alertууs',
+                  create: '/aleууrts/create',
+                  edit: '/alerууts/edit/:id',
+                  show: '/alerууts/show/:id',
+                  meta: {
+                    label: 'Помощь',
+                    icon: <QuestionCircleOutlined />,
                   },
                 },
               ]}
